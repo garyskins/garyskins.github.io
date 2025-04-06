@@ -76,13 +76,15 @@
       filter: invert(1);
     }
 
-    /* Simple grid layout for gallery with increased spacing */
+    /* Adjusted gallery layout */
     .gallery {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /* Auto-fill columns with minimum width of 250px */
-      gap: 30px; /* Increased gap between images */
+      grid-template-columns: repeat(auto-fill, minmax(125px, 1fr)); /* Reduced minimum size for items */
+      gap: 20px; /* Increased gap between images */
       padding: 20px;
       padding-top: 100px; /* Adjusted to move gallery further down */
+      max-width: 80%; /* Reduce the gallery size by 50% */
+      margin: 0 auto; /* Center gallery */
     }
 
     .gallery-item {
@@ -180,6 +182,10 @@
 
       .gallery-item img {
         object-position: center center;
+      }
+
+      .gallery {
+        max-width: 90%; /* Make it smaller on mobile as well */
       }
     }
   </style>
