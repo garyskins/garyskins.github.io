@@ -7,9 +7,10 @@
   <style>
     :root {
       --bg-light: #ffffff;
-      --text-light: #111111;
-      --bg-dark: #111111;
+      --text-light: #000000;
+      --bg-dark: #000000;
       --text-dark: #ffffff;
+      --border-color: #888;
     }
 
     [data-theme="light"] {
@@ -33,7 +34,7 @@
       justify-content: space-between;
       align-items: center;
       padding: 1rem;
-      border-bottom: 1px solid #ccc;
+      border-bottom: 1px solid var(--border-color);
     }
 
     .toggle-btn {
@@ -43,6 +44,7 @@
       border: 1px solid currentColor;
       border-radius: 5px;
       font-size: 1rem;
+      color: inherit;
     }
 
     .gallery {
@@ -60,7 +62,7 @@
       height: 200px;
       border-radius: 50%;
       overflow: hidden;
-      border: 2px solid #ccc;
+      border: 2px solid var(--border-color);
       transition: transform 0.3s;
     }
 
@@ -82,12 +84,11 @@
   </header>
 
   <div class="gallery">
-    <!-- Example artworks (replace with your image links) -->
+    <!-- Replace these with your actual artwork -->
     <div class="artwork"><img src="https://via.placeholder.com/300" alt="Artwork 1" /></div>
     <div class="artwork"><img src="https://via.placeholder.com/300" alt="Artwork 2" /></div>
     <div class="artwork"><img src="https://via.placeholder.com/300" alt="Artwork 3" /></div>
     <div class="artwork"><img src="https://via.placeholder.com/300" alt="Artwork 4" /></div>
-    <!-- Add more as needed -->
   </div>
 
   <script>
