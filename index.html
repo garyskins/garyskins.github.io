@@ -35,22 +35,21 @@
     body {
       margin: 0;
       font-family: Arial, sans-serif;
-      padding-top: 80px;
       height: 100vh;
       width: 100%;
       transition: background-color 0.5s ease, color 0.5s ease, opacity 0.6s ease-in-out;
       opacity: 1; /* Default opacity */
+      padding-top: 80px; /* Ensure there's room for the fixed logo */
     }
 
     /* Logo styling */
     .logo {
-      position: relative;  /* Changed from fixed to relative */
-      top: 0;               /* Keep logo at the top of the page */
-      left: 50%;
-      transform: translateX(-50%);
+      position: fixed;  /* Fixed position to stay at the top */
+      top: 0;            /* Stay at the top of the page */
+      left: 50%;         /* Center horizontally */
+      transform: translateX(-50%);  /* Adjust to perfectly center */
       z-index: 1000;
-      transition: opacity 0.5s ease, visibility 0.3s ease, filter 0.5s ease;
-      margin-bottom: 20px;  /* Add space below the logo */
+      margin-bottom: 20px;  /* Optional: space below the logo */
     }
 
     .logo img {
@@ -176,7 +175,7 @@
 </head>
 <body>
 
-  <!-- Logo in the top center -->
+  <!-- Logo centered horizontally at the top -->
   <div class="logo">
     <img src="IMG_6130 (1).PNG" alt="Logo"> <!-- Replace 'your-logo.png' with your actual logo path -->
   </div>
