@@ -34,13 +34,11 @@
     body {
       margin: 0;
       font-family: Arial, sans-serif;
-      padding: 0;
-      overflow: hidden;
-      display: flex;
-      flex-direction: column;
-      height: 100vh;
+      padding-top: 80px;
+      transition: background-color 0.5s ease, color 0.5s ease;
     }
 
+    /* Logo animation */
     @keyframes fadeSlideDown {
       0% {
         opacity: 0;
@@ -58,13 +56,14 @@
       left: 50%;
       transform: translateX(-50%);
       z-index: 1000;
-      margin: 20px 0;
+      margin-bottom: 50px;
       opacity: 0;
+      transition: filter 0.5s ease;
     }
 
     .logo img {
       width: 150px;
-      transform: scale(1.55);
+      transform: scale(1.55); /* 55% zoom */
       transition: filter 0.5s ease;
     }
 
@@ -77,23 +76,21 @@
     }
 
     .gallery {
-      flex: 1;
-      overflow-y: auto;
-      padding: 10px;
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-      gap: 10px;
-      justify-items: center;
-      align-items: center;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 20px;
+      padding: 20px;
     }
 
     .gallery-item {
+      position: relative;
       width: 100%;
-      aspect-ratio: 1 / 1;
-      border-radius: 50%;
+      padding-top: 100%;
       overflow: hidden;
-      border: 4px solid transparent;
+      border-radius: 50%;
+      background-color: #f0f0f0;
       transition: transform 0.3s ease;
+      border: 8px solid transparent;
     }
 
     .gallery-item:hover {
@@ -101,6 +98,9 @@
     }
 
     .gallery-item img {
+      position: absolute;
+      top: 0;
+      left: 0;
       width: 100%;
       height: 100%;
       object-fit: cover;
@@ -168,6 +168,17 @@
     [data-theme="dark"] .toggle-btn .dot {
       background-color: var(--switch-dot-dark);
     }
+
+    @media (max-width: 600px) {
+      .gallery-item {
+        padding-top: 80%;
+        border-width: 5px;
+      }
+
+      .gallery-item img {
+        object-position: center center;
+      }
+    }
   </style>
 </head>
 <body>
@@ -192,7 +203,7 @@
     <div class="gallery-item border2">
       <img src="your-artwork2.jpg" alt="Artwork 2" />
     </div>
-    <!-- Add more gallery items as needed -->
+    <!-- Add more gallery items here -->
   </div>
 
   <script>
@@ -211,18 +222,19 @@
       localStorage.setItem('theme', newTheme);
     }
 
-    // Animate logo when it enters view
+    // Scroll animation for logo using IntersectionObserver
     const logo = document.getElementById('logo');
     const observer = new IntersectionObserver(entries => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
           logo.classList.add('animate');
-          observer.unobserve(logo);
+          observer.unobserve(logo); // Run once
         }
       });
     }, { threshold: 0.6 });
 
     observer.observe(logo);
   </script>
+
 </body>
 </html>
