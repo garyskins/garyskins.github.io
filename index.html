@@ -49,13 +49,18 @@
       left: 50%;
       transform: translateX(-50%);
       z-index: 1000;
-      transition: opacity 0.5s ease, visibility 0.3s ease;
+      transition: opacity 0.5s ease, visibility 0.3s ease, filter 0.5s ease;
     }
 
     .logo img {
       width: 150px;
       transform: scale(1.55); /* 55% zoom */
-      transition: transform 0.5s ease;
+      transition: transform 0.5s ease, filter 0.5s ease;
+    }
+
+    /* Invert the logo color for dark mode */
+    [data-theme="dark"] .logo img {
+      filter: invert(1); /* Invert colors in dark mode */
     }
 
     .gallery {
