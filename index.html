@@ -31,12 +31,13 @@
       margin: 0;
       font-family: Arial, sans-serif;
       transition: background-color 0.3s ease, color 0.3s ease;
+      padding-top: 80px; /* Added space at the top to prevent title overlap */
     }
 
     /* Logo (Title) */
     .logo-container {
-      position: fixed;
-      top: 1rem;
+      position: sticky; /* Keep title fixed at the top */
+      top: 0;
       left: 50%;
       transform: translateX(-50%);
       font-family: 'Dancing Script', cursive;
@@ -44,7 +45,10 @@
       font-weight: 400;
       color: var(--text-light);
       transition: color 0.3s ease;
-      margin-bottom: 2rem;
+      margin-bottom: 2rem; /* Space between title and gallery */
+      z-index: 1000; /* Ensure the title is always on top */
+      background: var(--bg-light); /* Background color to ensure it's readable */
+      padding: 10px 0; /* Padding for spacing */
     }
 
     [data-theme="dark"] .logo-container {
@@ -106,7 +110,6 @@
       flex-wrap: wrap;
       justify-content: flex-start;
       gap: 1rem;
-      padding-top: 80px;
       padding-left: 1rem;
       padding-right: 1rem;
       width: 100%;
