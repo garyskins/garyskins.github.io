@@ -49,6 +49,23 @@
         linear-gradient(90deg, var(--grid-dark) 1px, transparent 1px);
     }
 
+    /* Signature (Garyisking) */
+    .signature {
+      position: fixed;
+      top: 1rem;
+      left: 50%;
+      transform: translateX(-50%);
+      font-family: 'Dancing Script', cursive;
+      font-size: 2.5rem;
+      color: var(--text-light);
+      z-index: 1000;
+      transition: color 0.4s ease;
+    }
+
+    [data-theme="dark"] .signature {
+      color: var(--text-dark);
+    }
+
     /* Theme Toggle Button (Horizontal Switch) */
     .toggle-btn {
       position: fixed;
@@ -101,6 +118,11 @@
 </head>
 <body>
 
+  <!-- Signature -->
+  <div class="signature">
+    garyisking
+  </div>
+
   <!-- Theme Toggle Button -->
   <button class="toggle-btn" onclick="toggleTheme()" id="themeToggle">
     <div class="switch">
@@ -130,4 +152,3 @@
   </script>
 </body>
 </html>
-
