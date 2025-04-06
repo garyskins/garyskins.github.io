@@ -29,14 +29,11 @@
       transition: background-color 0.3s, color 0.3s;
     }
 
-    header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 1rem;
-    }
-
+    /* Theme Toggle Button */
     .toggle-btn {
+      position: fixed;
+      top: 1rem;
+      right: 1rem;
       background: none;
       border: none;
       cursor: pointer;
@@ -46,13 +43,13 @@
       display: flex;
       align-items: center;
       justify-content: center;
+      z-index: 1000;
     }
 
     .toggle-btn svg.theme-icon {
       width: 24px;
       height: 24px;
       stroke-width: 1.5;
-      stroke: none;
       fill: currentColor;
       transition: fill 0.3s;
     }
@@ -65,24 +62,33 @@
       fill: #ffffff;
     }
 
-    .logo {
-      height: 40px;
+    /* Logo */
+    .logo-container {
+      text-align: center;
+      margin-top: 1rem;
     }
 
-    .header-section {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      width: 100%;
+    .logo-img {
+      height: 60px;
+      transition: filter 0.3s;
     }
 
+    [data-theme="light"] .logo-img {
+      filter: invert(0); /* black logo */
+    }
+
+    [data-theme="dark"] .logo-img {
+      filter: invert(1); /* white logo */
+    }
+
+    /* Gallery */
     .gallery {
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
       gap: 1rem;
       padding: 1rem;
-      max-height: calc(100vh - 70px);
+      max-height: calc(100vh - 100px);
       overflow-y: auto;
     }
 
@@ -107,26 +113,28 @@
   </style>
 </head>
 <body>
-  <header>
-    <div class="header-section">
-      <div style="flex: 1;"></div>
-      <img src="IMG_6130 (1)" alt="Logo" class="logo" />
-      <button class="toggle-btn" onclick="toggleTheme()" id="themeToggle">
-        <svg class="theme-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-          <path d="M21 12.79A9 9 0 0111.21 3 7 7 0 0012 17a7 7 0 009-4.21z"/>
-        </svg>
-      </button>
-    </div>
-  </header>
 
+  <!-- Logo -->
+  <div class="logo-container">
+    <img src="IMG_6130 (1).PNG" alt="Logo" class="logo-img" />
+  </div>
+
+  <!-- Theme Toggle Button -->
+  <button class="toggle-btn" onclick="toggleTheme()" id="themeToggle">
+    <svg class="theme-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+      <path d="M21 12.79A9 9 0 0111.21 3 7 7 0 0012 17a7 7 0 009-4.21z"/>
+    </svg>
+  </button>
+
+  <!-- Art Gallery -->
   <div class="gallery">
-    <!-- Replace with your actual artwork -->
     <div class="artwork"><img src="https://via.placeholder.com/300" alt="Artwork 1" /></div>
     <div class="artwork"><img src="https://via.placeholder.com/300" alt="Artwork 2" /></div>
     <div class="artwork"><img src="https://via.placeholder.com/300" alt="Artwork 3" /></div>
     <div class="artwork"><img src="https://via.placeholder.com/300" alt="Artwork 4" /></div>
   </div>
 
+  <!-- Theme Toggle Script -->
   <script>
     const themeToggle = document.getElementById("themeToggle");
 
