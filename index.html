@@ -40,6 +40,7 @@
       background-position: 0 0, 0 0;
       height: 100vh;
       width: 100%;
+      overflow-y: scroll;
     }
 
     [data-theme="dark"] body {
@@ -57,17 +58,23 @@
       font-size: 2.5rem;
       color: var(--text-light);
       z-index: 1000;
+      background-color: var(--bg-light); /* Optional: adds a background to the title */
+      padding: 0.5rem;
+      border-radius: 5px;
     }
 
     [data-theme="dark"] .signature {
       color: var(--text-dark);
+      background-color: var(--bg-dark); /* Background for dark theme */
     }
 
     .gallery {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
       gap: 20px;
-      padding: 20px;
+      padding: 100px 20px 20px; /* Adds padding to the top to account for the fixed title */
+      overflow-y: auto; /* Makes the gallery scrollable */
+      height: calc(100vh - 100px); /* Makes the gallery take the remaining height */
     }
 
     .gallery-item {
