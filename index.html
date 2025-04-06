@@ -60,16 +60,17 @@
       top: 20px;
       left: 50%;
       transform: translateX(-50%); /* Center the title horizontally */
+      background: transparent; /* Transparent background */
     }
 
     [data-theme="dark"] .signature {
       color: var(--text-dark);
     }
 
-    /* Title and Toggle Button Container */
+    /* Header Container (Align Title and Button) */
     .header-container {
       display: flex;
-      justify-content: center;
+      justify-content: space-between;
       align-items: center;
       padding: 1rem;
       position: fixed;
@@ -93,7 +94,6 @@
       justify-content: center;
       padding: 5px;
       transition: background-color 0.4s ease; /* Faster transition */
-      margin-left: 20px; /* Space between title and toggle button */
     }
 
     .toggle-btn .switch {
