@@ -103,60 +103,6 @@
       transform: translate(30px, -50%);
       background-color: var(--switch-dot-dark);
     }
-
-    /* Gallery */
-    .gallery {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: flex-start;
-      gap: 1rem;
-      padding-left: 1rem;
-      padding-right: 1rem;
-      width: 100%;
-      box-sizing: border-box;
-    }
-
-    .artwork {
-      width: calc(16.66% - 1rem);
-      height: 0;
-      padding-bottom: 16.66%;
-      border-radius: 50%;
-      overflow: hidden;
-      border: 3px solid var(--border-color);
-      position: relative;
-      transition: transform 0.3s, box-shadow 0.3s;
-    }
-
-    .artwork img {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-
-    .artwork:hover {
-      transform: scale(1.05);
-      box-shadow: 0 0 0 6px var(--border-color);
-    }
-
-    /* Responsive Design */
-    @media (max-width: 1200px) {
-      .artwork {
-        width: calc(16.66% - 1rem);
-      }
-    }
-
-    @media (max-width: 768px) {
-      .artwork {
-        width: calc(33.33% - 1rem);
-      }
-    }
-
-    @media (max-width: 480px) {
-      .artwork {
-        width: calc(33.33% - 1rem);
-      }
-    }
   </style>
 </head>
 <body>
@@ -172,16 +118,6 @@
       <div class="dot"></div>
     </div>
   </button>
-
-  <!-- Art Gallery -->
-  <div class="gallery">
-    <div class="artwork"><img src="https://via.placeholder.com/300" alt="Artwork 1" /></div>
-    <div class="artwork"><img src="https://via.placeholder.com/300" alt="Artwork 2" /></div>
-    <div class="artwork"><img src="https://via.placeholder.com/300" alt="Artwork 3" /></div>
-    <div class="artwork"><img src="https://via.placeholder.com/300" alt="Artwork 4" /></div>
-    <div class="artwork"><img src="https://via.placeholder.com/300" alt="Artwork 5" /></div>
-    <div class="artwork"><img src="https://via.placeholder.com/300" alt="Artwork 6" /></div>
-  </div>
 
   <!-- Theme Toggle Script -->
   <script>
