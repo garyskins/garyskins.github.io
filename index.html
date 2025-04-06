@@ -66,6 +66,56 @@
       color: var(--text-dark);
     }
 
+    /* Agar.io Dots */
+    .dots-container {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .dot {
+      border-radius: 50%;
+      position: absolute;
+      animation: pulse 3s infinite;
+    }
+
+    .dot.green {
+      background-color: green;
+      width: 60px;
+      height: 60px;
+      animation-delay: 0s;
+    }
+
+    .dot.red {
+      background-color: red;
+      width: 90px;
+      height: 90px;
+      animation-delay: 1s;
+    }
+
+    .dot.blue {
+      background-color: blue;
+      width: 120px;
+      height: 120px;
+      animation-delay: 2s;
+    }
+
+    @keyframes pulse {
+      0% {
+        transform: scale(1);
+      }
+      50% {
+        transform: scale(1.2);
+      }
+      100% {
+        transform: scale(1);
+      }
+    }
+
     /* Theme Toggle Button (Horizontal Switch) */
     .toggle-btn {
       position: fixed;
@@ -121,6 +171,13 @@
   <!-- Signature -->
   <div class="signature">
     garyisking
+  </div>
+
+  <!-- Agar.io Dots -->
+  <div class="dots-container">
+    <div class="dot green"></div>
+    <div class="dot red"></div>
+    <div class="dot blue"></div>
   </div>
 
   <!-- Theme Toggle Button -->
