@@ -35,38 +35,40 @@
       margin: 0;
       font-family: Arial, sans-serif;
       padding-top: 80px;
-      height: 100vh;
-      width: 100%;
-      transition: background-color 0.5s ease, color 0.5s ease, opacity 0.6s ease-in-out;
-      opacity: 1;
+      transition: background-color 0.5s ease, color 0.5s ease;
     }
 
-    /* Logo styling */
+    /* Logo animation */
+    @keyframes fadeSlideDown {
+      0% {
+        opacity: 0;
+        transform: translate(-50%, -20px);
+      }
+      100% {
+        opacity: 1;
+        transform: translate(-50%, 0);
+      }
+    }
+
     .logo {
       position: relative;
       top: 0;
       left: 50%;
       transform: translateX(-50%);
       z-index: 1000;
-      margin-bottom: 40px; /* Default spacing for most screens */
-    }
-
-    @media (min-width: 768px) {
-      .logo {
-        margin-bottom: 60px;
-      }
-    }
-
-    @media (min-width: 1024px) {
-      .logo {
-        margin-bottom: 80px;
-      }
+      margin-bottom: 50px;
+      opacity: 0;
+      transition: filter 0.5s ease;
     }
 
     .logo img {
       width: 150px;
       transform: scale(1.55); /* 55% zoom */
-      transition: transform 0.5s ease, filter 0.5s ease;
+      transition: filter 0.5s ease;
+    }
+
+    .logo.animate {
+      animation: fadeSlideDown 1.2s ease-out forwards;
     }
 
     [data-theme="dark"] .logo img {
@@ -181,17 +183,19 @@
 </head>
 <body>
 
-  <!-- Logo in the top center -->
-  <div class="logo">
+  <!-- Logo at top center -->
+  <div class="logo" id="logo">
     <img src="IMG_6130 (1).PNG" alt="Logo">
   </div>
 
+  <!-- Theme toggle button -->
   <button class="toggle-btn" onclick="toggleTheme()" id="themeToggle">
     <div class="switch">
       <div class="dot"></div>
     </div>
   </button>
 
+  <!-- Gallery section -->
   <div class="gallery">
     <div class="gallery-item border1">
       <img src="your-artwork1.jpg" alt="Artwork 1" />
@@ -217,6 +221,20 @@
       html.setAttribute("data-theme", newTheme);
       localStorage.setItem('theme', newTheme);
     }
+
+    // Scroll animation for logo using IntersectionObserver
+    const logo = document.getElementById('logo');
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          logo.classList.add('animate');
+          observer.unobserve(logo); // Run once
+        }
+      });
+    }, { threshold: 0.6 });
+
+    observer.observe(logo);
   </script>
+
 </body>
 </html>
