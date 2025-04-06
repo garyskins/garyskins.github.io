@@ -56,6 +56,10 @@
       color: var(--text-light);
       z-index: 1000;
       transition: color 0.4s ease;
+      position: absolute;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%); /* Center the title horizontally */
     }
 
     [data-theme="dark"] .signature {
@@ -65,7 +69,7 @@
     /* Title and Toggle Button Container */
     .header-container {
       display: flex;
-      justify-content: space-between;
+      justify-content: center;
       align-items: center;
       padding: 1rem;
       position: fixed;
@@ -73,11 +77,7 @@
       left: 0;
       right: 0;
       z-index: 1000;
-      background-color: var(--bg-light);
-    }
-
-    [data-theme="dark"] .header-container {
-      background-color: var(--bg-dark);
+      background-color: transparent; /* Transparent background */
     }
 
     /* Theme Toggle Button (Horizontal Switch) */
@@ -93,6 +93,7 @@
       justify-content: center;
       padding: 5px;
       transition: background-color 0.4s ease; /* Faster transition */
+      margin-left: 20px; /* Space between title and toggle button */
     }
 
     .toggle-btn .switch {
