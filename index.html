@@ -79,7 +79,7 @@
     /* Adjusted gallery layout */
     .gallery {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(125px, 1fr)); /* Reduced minimum size for items */
+      grid-template-columns: repeat(6, 1fr); /* 6 items per row by default */
       gap: 20px; /* Increased gap between images */
       padding: 20px;
       padding-top: 100px; /* Adjusted to move gallery further down */
@@ -177,6 +177,10 @@
     }
 
     @media (max-width: 600px) {
+      .gallery {
+        grid-template-columns: repeat(3, 1fr); /* 3 items per row on mobile */
+      }
+
       .gallery-item {
         padding-top: 100%; /* Keep square shape on mobile */
         border-width: 5px;
