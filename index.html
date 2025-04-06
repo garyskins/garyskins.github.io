@@ -16,7 +16,7 @@
       --switch-dot-light: #fff; /* White dot for light mode */
       --switch-dot-dark: #fff;  /* White dot for dark mode */
       --grid-light: rgba(211, 211, 211, 0.3);  /* Light gray grid lines */
-      --grid-dark: rgba(169, 169, 169, 0.3);   /* Dark gray grid lines */
+      --grid-dark: rgba(169, 169, 169, 0.5);   /* Darker gray grid lines for dark mode */
     }
 
     [data-theme="light"] {
@@ -39,6 +39,8 @@
         linear-gradient(90deg, var(--grid-light) 1px, transparent 1px);
       background-size: 30px 30px; /* Grid cell size */
       background-position: 0 0, 0 0;
+      height: 100vh; /* Ensure grid covers entire height */
+      width: 100%;  /* Ensure grid spans the full width */
     }
 
     [data-theme="dark"] body {
