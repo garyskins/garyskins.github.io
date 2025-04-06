@@ -1,49 +1,101 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Skin Gallery">
-  <title>Skin Gallery</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My Artwork Gallery</title>
+  <style>
+    :root {
+      --bg-light: #ffffff;
+      --text-light: #111111;
+      --bg-dark: #111111;
+      --text-dark: #ffffff;
+    }
+
+    [data-theme="light"] {
+      background-color: var(--bg-light);
+      color: var(--text-light);
+    }
+
+    [data-theme="dark"] {
+      background-color: var(--bg-dark);
+      color: var(--text-dark);
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      transition: background-color 0.3s, color 0.3s;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem;
+      border-bottom: 1px solid #ccc;
+    }
+
+    .toggle-btn {
+      padding: 0.5rem 1rem;
+      cursor: pointer;
+      background: none;
+      border: 1px solid currentColor;
+      border-radius: 5px;
+      font-size: 1rem;
+    }
+
+    .gallery {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1rem;
+      padding: 1rem;
+      max-height: calc(100vh - 70px);
+      overflow-y: auto;
+    }
+
+    .artwork {
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 2px solid #ccc;
+      transition: transform 0.3s;
+    }
+
+    .artwork img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .artwork:hover {
+      transform: scale(1.05);
+    }
+  </style>
 </head>
 <body>
-
-  <!-- Header Section -->
   <header>
-    <h1>Skin Gallery</h1>
-    <p>Browse through our selection of skins!</p>
+    <h1>My Artwork</h1>
+    <button class="toggle-btn" onclick="toggleTheme()">Toggle Theme</button>
   </header>
 
-  <!-- Gallery Section -->
-  <section id="gallery">
-    <div class="container">
-      <!-- Image Cards (Skins) -->
-      <div class="skin-card">
-        <img src="skin1.jpg" alt="Skin 1">
-        <p>Skin 1</p>
-      </div>
-      <div class="skin-card">
-        <img src="skin2.jpg" alt="Skin 2">
-        <p>Skin 2</p>
-      </div>
-      <div class="skin-card">
-        <img src="skin3.jpg" alt="Skin 3">
-        <p>Skin 3</p>
-      </div>
-      <div class="skin-card">
-        <img src="skin4.jpg" alt="Skin 4">
-        <p>Skin 4</p>
-      </div>
-      <!-- Add more skin cards as needed -->
-    </div>
-  </section>
+  <div class="gallery">
+    <!-- Example artworks (replace with your image links) -->
+    <div class="artwork"><img src="https://via.placeholder.com/300" alt="Artwork 1" /></div>
+    <div class="artwork"><img src="https://via.placeholder.com/300" alt="Artwork 2" /></div>
+    <div class="artwork"><img src="https://via.placeholder.com/300" alt="Artwork 3" /></div>
+    <div class="artwork"><img src="https://via.placeholder.com/300" alt="Artwork 4" /></div>
+    <!-- Add more as needed -->
+  </div>
 
-  <!-- Footer Section -->
-  <footer>
-    <p>&copy; 2025 Skin Gallery. All rights reserved.</p>
-  </footer>
-
-  <script src="script.js"></script>
+  <script>
+    function toggleTheme() {
+      const current = document.documentElement.getAttribute("data-theme");
+      const newTheme = current === "light" ? "dark" : "light";
+      document.documentElement.setAttribute("data-theme", newTheme);
+    }
+  </script>
 </body>
 </html>
