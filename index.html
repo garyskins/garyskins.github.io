@@ -61,6 +61,8 @@
       left: 50%;
       transform: translateX(-50%); /* Center the title horizontally */
       background: transparent; /* Transparent background */
+      padding-left: 15px; /* Added left padding */
+      padding-right: 15px; /* Added right padding */
     }
 
     [data-theme="dark"] .signature {
@@ -70,9 +72,9 @@
     /* Header Container (Align Title and Button) */
     .header-container {
       display: flex;
-      justify-content: flex-start;
+      justify-content: space-between;
       align-items: center;
-      padding: 1rem;
+      padding: 1rem 15px; /* Added padding to both sides */
       position: fixed;
       top: 0;
       left: 0;
