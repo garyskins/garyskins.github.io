@@ -7,16 +7,14 @@
   <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg-light: #ffffff;
+      --bg-light: #f0f0f0; /* Updated light mode background */
       --text-light: #000000;
-      --bg-dark: #000000;
+      --bg-dark: #111111; /* Updated dark mode background */
       --text-dark: #ffffff;
       --switch-bg-light: #888;
       --switch-bg-dark: #4CAF50;
       --switch-dot-light: #fff;
       --switch-dot-dark: #fff;
-      --grid-light: rgba(169, 169, 169, 0.4);
-      --grid-dark: rgba(50, 50, 50, 0.8);
     }
 
     [data-theme="light"] {
@@ -33,21 +31,10 @@
       margin: 0;
       font-family: Arial, sans-serif;
       padding-top: 80px;
-      background-image:
-        linear-gradient(0deg, var(--grid-light) 1px, transparent 1px),
-        linear-gradient(90deg, var(--grid-light) 1px, transparent 1px);
-      background-size: 30px 30px;
-      background-position: 0 0, 0 0;
       height: 100vh;
       width: 100%;
       transition: background-color 0.4s ease, color 0.4s ease, opacity 0.6s ease-in-out;
       opacity: 1; /* Default opacity */
-    }
-
-    [data-theme="dark"] body {
-      background-image:
-        linear-gradient(0deg, var(--grid-dark) 1px, transparent 1px),
-        linear-gradient(90deg, var(--grid-dark) 1px, transparent 1px);
     }
 
     .signature {
@@ -80,7 +67,8 @@
       overflow: hidden;
       border-radius: 50%;
       background-color: #f0f0f0; /* Placeholder background color */
-      transition: transform 0.3s ease, border 0.3s ease;
+      transition: transform 0.3s ease;
+      border: 8px solid transparent; /* Default border color */
     }
 
     .gallery-item:hover {
@@ -199,18 +187,8 @@
       const html = document.documentElement;
       const currentTheme = html.getAttribute("data-theme");
       const newTheme = currentTheme === "light" ? "dark" : "light";
-
-      // Fade out before changing the theme
-      document.body.style.opacity = 0;
-
-      // Change the theme after fade-out
-      setTimeout(() => {
-        html.setAttribute("data-theme", newTheme);
-        localStorage.setItem('theme', newTheme);
-        
-        // Fade back in
-        document.body.style.opacity = 1;
-      }, 300); // Delay for the fade-out to complete
+      html.setAttribute("data-theme", newTheme);
+      localStorage.setItem('theme', newTheme);
     }
   </script>
 </body>
