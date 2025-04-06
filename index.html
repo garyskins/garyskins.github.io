@@ -40,7 +40,6 @@
       background-position: 0 0, 0 0;
       height: 100vh;
       width: 100%;
-      position: relative;
     }
 
     [data-theme="dark"] body {
@@ -67,41 +66,20 @@
     .gallery {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-      gap: 40px;
-      padding: 40px;
-      position: relative;
+      gap: 20px;
+      padding: 20px;
     }
 
     .gallery-item {
       position: relative;
       width: 100%;
-      padding-top: 100%; /* This ensures the container is always square */
+      aspect-ratio: 1; /* Ensures the container is always square */
       overflow: hidden;
-      border-radius: 50%;
-      background-color: #f0f0f0;
+      border-radius: 50%; /* Ensures the container is circular */
+      background-color: #f0f0f0; /* Placeholder background color */
       transition: transform 0.3s ease;
-      border: 8px solid transparent;
-      animation: liquid-border 4s infinite ease-in-out; /* Apply the liquid effect animation */
-    }
-
-    /* Liquid Animation for Border */
-    @keyframes liquid-border {
-      0%, 100% {
-        border-width: 8px;
-        border-color: rgba(255, 99, 71, 1); /* Example starting color (Tomato) */
-      }
-      25% {
-        border-width: 16px;
-        border-color: rgba(72, 61, 139, 1); /* Example color change */
-      }
-      50% {
-        border-width: 8px;
-        border-color: rgba(70, 130, 180, 1); /* Example color change */
-      }
-      75% {
-        border-width: 16px;
-        border-color: rgba(34, 139, 34, 1); /* Example color change */
-      }
+      border: 8px solid transparent; /* Default border color */
+      transition: transform 0.3s ease, border 0.3s ease;
     }
 
     .gallery-item:hover {
@@ -115,7 +93,16 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
-      border-radius: 50%;
+      border-radius: 50%; /* Ensures the image is circular */
+    }
+
+    /* Example borders for images */
+    .gallery-item.border1 {
+      border-color: #ff6347; /* Example border color */
+    }
+
+    .gallery-item.border2 {
+      border-color: #4682b4; /* Example border color */
     }
 
     .toggle-btn {
@@ -166,14 +153,10 @@
       background-color: var(--switch-dot-dark);
     }
 
+    /* Media Queries for Smaller Screens */
     @media (max-width: 600px) {
       .gallery-item {
-        padding-top: 80%;
-        border-width: 5px;
-      }
-
-      .gallery-item img {
-        object-position: center center;
+        border-width: 5px; /* Thinner border */
       }
     }
   </style>
@@ -189,10 +172,10 @@
   </button>
 
   <div class="gallery">
-    <div class="gallery-item">
+    <div class="gallery-item border1">
       <img src="your-artwork1.jpg" alt="Artwork 1" />
     </div>
-    <div class="gallery-item">
+    <div class="gallery-item border2">
       <img src="your-artwork2.jpg" alt="Artwork 2" />
     </div>
     <!-- Add more gallery items here -->
