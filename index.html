@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>My Artwork Gallery</title>
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500&display=swap" rel="stylesheet">
   <style>
     :root {
       --bg-light: #ffffff;
@@ -37,19 +38,15 @@
       transform: translateX(-50%);
       z-index: 1000;
       margin-bottom: 1rem; /* Space between logo and gallery */
+      font-family: 'Dancing Script', cursive;
+      font-size: 3rem;
+      font-weight: 500;
+      color: var(--text-light);
+      transition: color 0.3s;
     }
 
-    .logo-img {
-      height: 60px;
-      transition: filter 0.3s;
-    }
-
-    [data-theme="light"] .logo-img {
-      filter: invert(0); /* black logo */
-    }
-
-    [data-theme="dark"] .logo-img {
-      filter: invert(1); /* white logo */
+    [data-theme="dark"] .logo-container {
+      color: var(--text-dark); /* White text in dark mode */
     }
 
     /* Theme Toggle Button */
@@ -146,7 +143,7 @@
 
   <!-- Logo -->
   <div class="logo-container">
-    <img src="IMG_6130 (1).PNG" alt="Logo" class="logo-img" />
+    garyisking
   </div>
 
   <!-- Theme Toggle Button -->
