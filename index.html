@@ -92,13 +92,23 @@
     }
 
     .artwork:hover {
-      transform: scale(1.05);
+      transform: scale(1.5);
     }
   </style>
 </head>
 <body>
   <header>
-    <h1>My Artwork</h1>
+    <header>
+  <div style="flex: 1;"></div>
+  <img src="your-logo.png" alt="Logo" style="height: 40px;" />
+  <button class="toggle-btn" onclick="toggleTheme()" id="themeToggle">
+    <!-- Default to moon icon -->
+    <svg class="theme-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+      <path d="M21 12.79A9 9 0 0111.21 3 7 7 0 0012 17a7 7 0 009-4.21z"/>
+    </svg>
+  </button>
+</header>
+
     <button class="toggle-btn" onclick="toggleTheme()" id="themeToggle">
       <!-- Default to moon icon -->
       <svg class="theme-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
