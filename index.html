@@ -44,8 +44,8 @@
 
     /* Logo styling */
     .logo {
-      position: fixed;
-      top: 1rem;
+      position: fixed;  /* Fixed positioning to keep the logo at the top */
+      top: 1rem;        /* 1rem from the top of the page */
       left: 50%;
       transform: translateX(-50%);
       z-index: 1000;
@@ -205,15 +205,7 @@
       document.documentElement.setAttribute('data-theme', savedTheme);
     });
 
-    // Scroll event to hide the logo on scroll down
-    window.addEventListener('scroll', () => {
-      if (window.scrollY > 100) { // When scrolled down more than 100px
-        logo.style.visibility = 'hidden'; // Hide the logo
-      } else {
-        logo.style.visibility = 'visible'; // Show the logo again
-      }
-    });
-
+    // Function to toggle the theme
     function toggleTheme() {
       const html = document.documentElement;
       const currentTheme = html.getAttribute("data-theme");
