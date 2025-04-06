@@ -40,7 +40,8 @@
       background-position: 0 0, 0 0;
       height: 100vh;
       width: 100%;
-      transition: background-color 0.4s ease, color 0.4s ease;
+      transition: background-color 0.4s ease, color 0.4s ease, opacity 0.6s ease-in-out;
+      opacity: 1; /* Default opacity */
     }
 
     [data-theme="dark"] body {
@@ -198,8 +199,18 @@
       const html = document.documentElement;
       const currentTheme = html.getAttribute("data-theme");
       const newTheme = currentTheme === "light" ? "dark" : "light";
-      html.setAttribute("data-theme", newTheme);
-      localStorage.setItem('theme', newTheme);
+
+      // Fade out before changing the theme
+      document.body.style.opacity = 0;
+
+      // Change the theme after fade-out
+      setTimeout(() => {
+        html.setAttribute("data-theme", newTheme);
+        localStorage.setItem('theme', newTheme);
+        
+        // Fade back in
+        document.body.style.opacity = 1;
+      }, 300); // Delay for the fade-out to complete
     }
   </script>
 </body>
