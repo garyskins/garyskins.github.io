@@ -224,8 +224,12 @@
     <!-- Add more gallery items here -->
   </div>
 
+  <!-- Add the audio element for the sound effect -->
+  <audio id="toggleSound" src="sounds/toggle-sound.mp3" preload="auto"></audio>
+
   <script>
     const themeToggle = document.getElementById("themeToggle");
+    const toggleSound = document.getElementById("toggleSound");
 
     window.addEventListener('DOMContentLoaded', () => {
       const savedTheme = localStorage.getItem('theme') || 'light';
@@ -233,6 +237,9 @@
     });
 
     function toggleTheme() {
+      // Play the sound effect when toggling the theme
+      toggleSound.play();
+
       const html = document.documentElement;
       const currentTheme = html.getAttribute("data-theme");
       const newTheme = currentTheme === "light" ? "dark" : "light";
