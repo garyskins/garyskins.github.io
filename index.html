@@ -50,21 +50,20 @@
       }
     }
 
-    /* Updated .logo CSS for movement with content */
     .logo {
-      position: absolute; /* Keeps it in the content flow */
+      position: absolute; 
       top: 0;
       left: 50%;
-      transform: translateX(-50%); /* Centering the logo horizontally */
+      transform: translateX(-50%);
       z-index: 1000;
-      margin-top: 20px; /* Optional: Adjust the space between the logo and the top of the page */
+      margin-top: 20px;
       opacity: 0;
       transition: filter 0.5s ease;
     }
 
     .logo img {
       width: 150px;
-      transform: scale(1.55); /* 55% zoom */
+      transform: scale(1.55); 
       transition: filter 0.5s ease;
     }
 
@@ -76,27 +75,30 @@
       filter: invert(1);
     }
 
-    /* Adjusted gallery layout */
     .gallery {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(125px, 1fr)); /* Reduced minimum size for items */
-      gap: 20px; /* Increased gap between images */
+      grid-template-columns: repeat(auto-fill, minmax(125px, 1fr)); 
+      gap: 20px; 
       padding: 20px;
-      padding-top: 100px; /* Adjusted to move gallery further down */
+      padding-top: 100px; 
       width: 100%;
-      max-width: 1200px; /* Ensures that the gallery doesn't stretch too wide */
-      margin: 0 auto; /* Center gallery with equal spacing on both sides */
+      max-width: 1200px; 
+      margin: 0 auto; 
     }
 
     .gallery-item {
       position: relative;
       width: 100%;
-      padding-top: 100%; /* Ensures a square aspect ratio */
+      padding-top: 100%;
       overflow: hidden;
       background-color: #f0f0f0;
-      border-radius: 50%; /* Makes the images circular */
-      transition: transform 0.3s ease;
-      border: none; /* Reset border to default (no border) */
+      border-radius: 50%;
+      transition: transform 0.3s ease, border-color 0.5s ease; /* Smooth transition for border */
+      border: 2px solid #e0e0e0; /* Default border color for light mode */
+    }
+
+    [data-theme="dark"] .gallery-item {
+      border-color: #404040; /* Border color for dark mode */
     }
 
     .gallery-item:hover {
@@ -169,7 +171,7 @@
 
     @media (max-width: 600px) {
       .gallery-item {
-        padding-top: 100%; /* Keep square shape on mobile */
+        padding-top: 100%; 
         border-width: 5px;
       }
 
@@ -178,8 +180,8 @@
       }
 
       .gallery {
-        max-width: 90%; /* Make it smaller on mobile as well */
-        margin: 0 auto; /* Ensure the gallery is centered */
+        max-width: 90%; 
+        margin: 0 auto; 
         padding-left: 10px;
         padding-right: 10px;
       }
@@ -188,19 +190,16 @@
 </head>
 <body>
 
-  <!-- Logo at top center -->
   <div class="logo" id="logo">
     <img src="IMG_6130 (1).PNG" alt="Logo">
   </div>
 
-  <!-- Theme toggle button -->
   <button class="toggle-btn" onclick="toggleTheme()" id="themeToggle">
     <div class="switch">
       <div class="dot"></div>
     </div>
   </button>
 
-  <!-- Gallery section -->
   <div class="gallery">
     <div class="gallery-item">
       <img src="wavemoster (1) (1).png" alt="Artwork 1" />
@@ -208,7 +207,6 @@
     <div class="gallery-item">
       <img src="IMG_6725 (1) (1) (1).png" alt="Artwork 2" />
     </div>
-    <!-- Add more gallery items here -->
   </div>
 
   <script>
@@ -227,13 +225,12 @@
       localStorage.setItem('theme', newTheme);
     }
 
-    // Scroll animation for logo using IntersectionObserver
     const logo = document.getElementById('logo');
     const observer = new IntersectionObserver(entries => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
           logo.classList.add('animate');
-          observer.unobserve(logo); // Run once
+          observer.unobserve(logo); 
         }
       });
     }, { threshold: 0.6 });
