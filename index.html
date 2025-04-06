@@ -38,20 +38,33 @@
       transition: background-color 0.5s ease, color 0.5s ease;
     }
 
+    /* Logo animation */
+    @keyframes fadeSlideDown {
+      0% {
+        opacity: 0;
+        transform: translate(-50%, -20px);
+      }
+      100% {
+        opacity: 1;
+        transform: translate(-50%, 0);
+      }
+    }
+
+    /* Updated .logo CSS for movement with content */
     .logo {
-      position: absolute; 
+      position: absolute; /* Keeps it in the content flow */
       top: 0;
       left: 50%;
-      transform: translateX(-50%);
+      transform: translateX(-50%); /* Centering the logo horizontally */
       z-index: 1000;
-      margin-top: 20px;
+      margin-top: 20px; /* Optional: Adjust the space between the logo and the top of the page */
       opacity: 0;
       transition: filter 0.5s ease;
     }
 
     .logo img {
       width: 150px;
-      transform: scale(1.55); 
+      transform: scale(1.55); /* 55% zoom */
       transition: filter 0.5s ease;
     }
 
@@ -63,36 +76,41 @@
       filter: invert(1);
     }
 
+    /* Adjusted gallery layout */
     .gallery {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(125px, 1fr)); 
-      gap: 20px; 
+      grid-template-columns: repeat(auto-fill, minmax(125px, 1fr)); /* Reduced minimum size for items */
+      gap: 20px; /* Increased gap between images */
       padding: 20px;
-      padding-top: 100px; 
+      padding-top: 100px; /* Adjusted to move gallery further down */
       width: 100%;
-      max-width: 1200px; 
-      margin: 0 auto; 
+      max-width: 1200px; /* Ensures that the gallery doesn't stretch too wide */
+      margin: 0 auto; /* Center gallery with equal spacing on both sides */
     }
 
+    /* Adjusted gallery item borders */
     .gallery-item {
       position: relative;
       width: 100%;
-      padding-top: 100%;
+      padding-top: 100%; /* Ensures a square aspect ratio */
       overflow: hidden;
       background-color: #f0f0f0;
-      border-radius: 50%;
-      transition: transform 0.3s ease, border-color 0.5s ease; /* Smooth transition for border */
-      border: 2px solid #bcbcbc; /* Updated light mode border color */
+      border-radius: 50%; /* Makes the images circular */
+      transition: transform 0.3s ease, border-color 0.5s ease; /* Added transition for border-color */
+      border: 2px solid #bcbcbc; /* Light mode border */
     }
 
+    /* Dark mode border color */
     [data-theme="dark"] .gallery-item {
-      border-color: #404040; /* Border color for dark mode */
+      border-color: #404040; /* Dark mode border */
     }
 
+    /* Hover effect for gallery item */
     .gallery-item:hover {
       transform: scale(1.05);
     }
 
+    /* Gallery item images */
     .gallery-item img {
       position: absolute;
       top: 0;
@@ -103,6 +121,7 @@
       border-radius: 50%; /* Ensures the image itself is circular */
     }
 
+    /* Theme toggle button */
     .toggle-btn {
       position: fixed;
       top: 1rem;
@@ -159,7 +178,7 @@
 
     @media (max-width: 600px) {
       .gallery-item {
-        padding-top: 100%; 
+        padding-top: 100%; /* Keep square shape on mobile */
         border-width: 5px;
       }
 
@@ -168,8 +187,8 @@
       }
 
       .gallery {
-        max-width: 90%; 
-        margin: 0 auto; 
+        max-width: 90%; /* Make it smaller on mobile as well */
+        margin: 0 auto; /* Ensure the gallery is centered */
         padding-left: 10px;
         padding-right: 10px;
       }
@@ -178,16 +197,19 @@
 </head>
 <body>
 
+  <!-- Logo at top center -->
   <div class="logo" id="logo">
     <img src="IMG_6130 (1).PNG" alt="Logo">
   </div>
 
+  <!-- Theme toggle button -->
   <button class="toggle-btn" onclick="toggleTheme()" id="themeToggle">
     <div class="switch">
       <div class="dot"></div>
     </div>
   </button>
 
+  <!-- Gallery section -->
   <div class="gallery">
     <div class="gallery-item">
       <img src="wavemoster (1) (1).png" alt="Artwork 1" />
@@ -195,6 +217,7 @@
     <div class="gallery-item">
       <img src="IMG_6725 (1) (1) (1).png" alt="Artwork 2" />
     </div>
+    <!-- Add more gallery items here -->
   </div>
 
   <script>
@@ -213,12 +236,13 @@
       localStorage.setItem('theme', newTheme);
     }
 
+    // Scroll animation for logo using IntersectionObserver
     const logo = document.getElementById('logo');
     const observer = new IntersectionObserver(entries => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
           logo.classList.add('animate');
-          observer.unobserve(logo); 
+          observer.unobserve(logo); // Run once
         }
       });
     }, { threshold: 0.6 });
