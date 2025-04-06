@@ -51,10 +51,6 @@
 
     /* Signature (Garyisking) */
     .signature {
-      position: fixed;
-      top: 1rem;
-      left: 50%;
-      transform: translateX(-50%);
       font-family: 'Dancing Script', cursive;
       font-size: 2.5rem;
       color: var(--text-light);
@@ -66,11 +62,26 @@
       color: var(--text-dark);
     }
 
+    /* Title and Toggle Button Container */
+    .header-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      background-color: var(--bg-light);
+    }
+
+    [data-theme="dark"] .header-container {
+      background-color: var(--bg-dark);
+    }
+
     /* Theme Toggle Button (Horizontal Switch) */
     .toggle-btn {
-      position: fixed;
-      top: 1rem;
-      right: 1rem;
       background: none;
       border: none;
       cursor: pointer;
@@ -81,7 +92,6 @@
       align-items: center;
       justify-content: center;
       padding: 5px;
-      z-index: 1000;
       transition: background-color 0.4s ease; /* Faster transition */
     }
 
@@ -118,17 +128,20 @@
 </head>
 <body>
 
-  <!-- Signature -->
-  <div class="signature">
-    garyisking
-  </div>
-
-  <!-- Theme Toggle Button -->
-  <button class="toggle-btn" onclick="toggleTheme()" id="themeToggle">
-    <div class="switch">
-      <div class="dot"></div>
+  <!-- Header Container with Signature and Theme Toggle Button -->
+  <div class="header-container">
+    <!-- Signature -->
+    <div class="signature">
+      garyisking
     </div>
-  </button>
+
+    <!-- Theme Toggle Button -->
+    <button class="toggle-btn" onclick="toggleTheme()" id="themeToggle">
+      <div class="switch">
+        <div class="dot"></div>
+      </div>
+    </button>
+  </div>
 
   <!-- Theme Toggle Script -->
   <script>
