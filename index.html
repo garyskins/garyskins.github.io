@@ -1,206 +1,116 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="light">
+<html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>My Artwork Gallery</title>
-  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Skins - GDK</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
   <style>
-    :root {
-      --bg-light: #ffffff;
-      --text-light: #000000;
-      --bg-dark: #000000;
-      --text-dark: #ffffff;
-      --switch-bg-light: #888;
-      --switch-bg-dark: #4CAF50;
-      --switch-dot-light: #fff;
-      --switch-dot-dark: #fff;
-      --grid-light: rgba(169, 169, 169, 0.4);
-      --grid-dark: rgba(50, 50, 50, 0.8);
-    }
-
-    [data-theme="light"] {
-      background-color: var(--bg-light);
-      color: var(--text-light);
-    }
-
-    [data-theme="dark"] {
-      background-color: var(--bg-dark);
-      color: var(--text-dark);
-    }
-
     body {
+      font-family: 'Roboto', sans-serif;
       margin: 0;
-      font-family: Arial, sans-serif;
-      padding-top: 80px;
-      background-image:
-        linear-gradient(0deg, var(--grid-light) 1px, transparent 1px),
-        linear-gradient(90deg, var(--grid-light) 1px, transparent 1px);
-      background-size: 30px 30px;
-      background-position: 0 0, 0 0;
-      height: 100vh;
-      width: 100%;
+      padding: 0;
+      background-color: #f7f7f7;
     }
 
-    [data-theme="dark"] body {
-      background-image:
-        linear-gradient(0deg, var(--grid-dark) 1px, transparent 1px),
-        linear-gradient(90deg, var(--grid-dark) 1px, transparent 1px);
+    header {
+      background-color: #24292f;
+      padding: 20px;
+      text-align: center;
+      color: white;
     }
 
-    .signature {
-      position: fixed;
-      top: 1rem;
-      left: 50%;
-      transform: translateX(-50%);
-      font-family: 'Dancing Script', cursive;
-      font-size: 2.5rem;
-      color: var(--text-light);
-      z-index: 1000;
+    header h1 {
+      margin: 0;
     }
 
-    [data-theme="dark"] .signature {
-      color: var(--text-dark);
-    }
-
-    .gallery {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-      gap: 20px;
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
       padding: 20px;
     }
 
-    .gallery-item {
-      position: relative;
-      width: 100%;
-      padding-top: 100%; /* This ensures the container is always square */
+    .card {
+      display: inline-block;
+      width: 30%;
+      margin: 1%;
+      background-color: #fff;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
       overflow: hidden;
-      border-radius: 50%;
-      background-color: #f0f0f0; /* Placeholder background color */
-      transition: transform 0.3s ease;
-      border: 8px solid transparent; /* Default border color */
-      transition: transform 0.3s ease, border 0.3s ease;
+      transition: all 0.3s ease;
     }
 
-    .gallery-item:hover {
-      transform: scale(1.05);
-    }
-
-    .gallery-item img {
-      position: absolute;
-      top: 0;
-      left: 0;
+    .card img {
       width: 100%;
-      height: 100%;
-      object-fit: cover;
-      border-radius: 50%; /* Ensures the image is circular */
+      height: auto;
     }
 
-    /* Example borders for images */
-    .gallery-item.border1 {
-      border-color: #ff6347; /* Example border color */
+    .card .content {
+      padding: 15px;
     }
 
-    .gallery-item.border2 {
-      border-color: #4682b4; /* Example border color */
+    .card .content h2 {
+      font-size: 1.2em;
+      margin: 0 0 10px;
     }
 
-    .toggle-btn {
+    .card .content p {
+      font-size: 0.9em;
+      color: #555;
+    }
+
+    .card:hover {
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+    }
+
+    footer {
+      background-color: #24292f;
+      padding: 10px;
+      text-align: center;
+      color: white;
       position: fixed;
-      top: 1rem;
-      right: 1rem;
-      background: none;
-      border: none;
-      cursor: pointer;
-      width: 60px;
-      height: 30px;
-      border-radius: 30px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 5px;
-      z-index: 1000;
-      transition: background-color 0.4s ease;
-    }
-
-    .toggle-btn .switch {
       width: 100%;
-      height: 100%;
-      background-color: var(--switch-bg-light);
-      border-radius: 30px;
-      position: relative;
-      transition: background-color 0.4s ease;
-    }
-
-    .toggle-btn .dot {
-      width: 20px;
-      height: 20px;
-      background-color: var(--switch-dot-light);
-      border-radius: 50%;
-      position: absolute;
-      top: 50%;
-      left: 5px;
-      transform: translateY(-50%);
-      transition: transform 0.4s ease;
-    }
-
-    [data-theme="dark"] .toggle-btn .switch {
-      background-color: var(--switch-bg-dark);
-    }
-
-    [data-theme="dark"] .toggle-btn .dot {
-      transform: translate(30px, -50%);
-      background-color: var(--switch-dot-dark);
-    }
-
-    /* Media Queries for Smaller Screens */
-    @media (max-width: 600px) {
-      .gallery-item {
-        padding-top: 80%; /* Smaller circles on phones */
-        border-width: 5px; /* Thinner border */
-      }
-      
-      .gallery-item img {
-        object-position: center center; /* Adjust image positioning if necessary */
-      }
+      bottom: 0;
     }
   </style>
 </head>
 <body>
 
-  <div class="signature">YourName</div>
+<header>
+  <h1>Skins Gallery</h1>
+</header>
 
-  <button class="toggle-btn" onclick="toggleTheme()" id="themeToggle">
-    <div class="switch">
-      <div class="dot"></div>
+<div class="container">
+  <div class="card">
+    <img src="https://via.placeholder.com/300x200" alt="Skin 1">
+    <div class="content">
+      <h2>Skin Name 1</h2>
+      <p>A description of the skin.</p>
     </div>
-  </button>
-
-  <div class="gallery">
-    <div class="gallery-item border1">
-      <img src="your-artwork1.jpg" alt="Artwork 1" />
-    </div>
-    <div class="gallery-item border2">
-      <img src="your-artwork2.jpg" alt="Artwork 2" />
-    </div>
-    <!-- Add more gallery items here -->
   </div>
+  <div class="card">
+    <img src="https://via.placeholder.com/300x200" alt="Skin 2">
+    <div class="content">
+      <h2>Skin Name 2</h2>
+      <p>A description of the skin.</p>
+    </div>
+  </div>
+  <div class="card">
+    <img src="https://via.placeholder.com/300x200" alt="Skin 3">
+    <div class="content">
+      <h2>Skin Name 3</h2>
+      <p>A description of the skin.</p>
+    </div>
+  </div>
+  <!-- Add more cards as needed -->
+</div>
 
-  <script>
-    const themeToggle = document.getElementById("themeToggle");
+<footer>
+  <p>&copy; 2025 GDK Skins | All rights reserved</p>
+</footer>
 
-    window.addEventListener('DOMContentLoaded', () => {
-      const savedTheme = localStorage.getItem('theme') || 'light';
-      document.documentElement.setAttribute('data-theme', savedTheme);
-    });
-
-    function toggleTheme() {
-      const html = document.documentElement;
-      const currentTheme = html.getAttribute("data-theme");
-      const newTheme = currentTheme === "light" ? "dark" : "light";
-      html.setAttribute("data-theme", newTheme);
-      localStorage.setItem('theme', newTheme);
-    }
-  </script>
 </body>
 </html>
