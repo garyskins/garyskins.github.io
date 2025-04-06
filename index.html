@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>My Artwork Gallery</title>
-  <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap" rel="stylesheet">
   <style>
     :root {
       --bg-light: #ffffff;
@@ -30,19 +30,19 @@
       transition: background-color 0.3s, color 0.3s;
     }
 
-    /* Logo */
+    /* Logo (Title) */
     .logo-container {
       position: fixed;
       top: 1rem;
       left: 50%;
       transform: translateX(-50%);
       z-index: 1000;
-      margin-bottom: 1rem; /* Space between logo and gallery */
-      font-family: 'Pacifico', cursive;
+      font-family: 'Dancing Script', cursive;
       font-size: 3rem;
-      font-weight: 500;
+      font-weight: 400;
       color: var(--text-light);
       transition: color 0.3s;
+      margin-bottom: 2rem; /* Added space between title and gallery */
     }
 
     [data-theme="dark"] .logo-container {
@@ -57,8 +57,8 @@
       background: none;
       border: none;
       cursor: pointer;
-      width: 32px;
-      height: 32px;
+      width: 36px;
+      height: 36px;
       padding: 0;
       display: flex;
       align-items: center;
@@ -68,10 +68,8 @@
     }
 
     .toggle-btn svg.theme-icon {
-      width: 24px;
-      height: 24px;
-      stroke-width: 1.5;
-      fill: currentColor; /* Ensures it adapts to the current text color */
+      width: 32px;
+      height: 32px;
       transition: fill 0.3s, transform 0.3s ease;
     }
 
@@ -141,7 +139,7 @@
 </head>
 <body>
 
-  <!-- Logo -->
+  <!-- Logo (Title) -->
   <div class="logo-container">
     garyisking
   </div>
@@ -149,8 +147,8 @@
   <!-- Theme Toggle Button -->
   <button class="toggle-btn" onclick="toggleTheme()" id="themeToggle">
     <svg class="theme-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-      <!-- Moon Icon (used in Light Mode) -->
-      <path d="M21 12.79A9 9 0 0111.21 3 7 7 0 0012 17a7 7 0 009-4.21z"/>
+      <!-- Sun Icon (filled circle for Dark Mode) -->
+      <circle cx="12" cy="12" r="10" fill="#fff"/>
     </svg>
   </button>
 
