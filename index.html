@@ -11,7 +11,10 @@
       --text-light: #000000;
       --bg-dark: #000000;
       --text-dark: #ffffff;
-      --border-color: #888;
+      --switch-bg-light: #ddd;
+      --switch-bg-dark: #333;
+      --switch-dot-light: #fff;
+      --switch-dot-dark: #000;
     }
 
     [data-theme="light"] {
@@ -36,20 +39,19 @@
       top: 1rem;
       left: 50%;
       transform: translateX(-50%);
-      z-index: 1000;
       font-family: 'Dancing Script', cursive;
       font-size: 3rem;
       font-weight: 400;
       color: var(--text-light);
       transition: color 0.3s;
-      margin-bottom: 2rem; /* Added space between title and gallery */
+      margin-bottom: 2rem;
     }
 
     [data-theme="dark"] .logo-container {
-      color: var(--text-dark); /* White text in dark mode */
+      color: var(--text-dark);
     }
 
-    /* Theme Toggle Button */
+    /* Theme Toggle Button (Horizontal Switch) */
     .toggle-btn {
       position: fixed;
       top: 1rem;
@@ -57,28 +59,45 @@
       background: none;
       border: none;
       cursor: pointer;
-      width: 36px;
-      height: 36px;
-      padding: 0;
+      width: 60px;
+      height: 30px;
+      border-radius: 30px;
       display: flex;
       align-items: center;
       justify-content: center;
+      padding: 5px;
       z-index: 1000;
+      transition: background-color 0.3s;
+    }
+
+    .toggle-btn .switch {
+      width: 100%;
+      height: 100%;
+      background-color: var(--switch-bg-light);
+      border-radius: 30px;
+      position: relative;
+      transition: background-color 0.3s;
+    }
+
+    .toggle-btn .dot {
+      width: 20px;
+      height: 20px;
+      background-color: var(--switch-dot-light);
+      border-radius: 50%;
+      position: absolute;
+      top: 50%;
+      left: 5px;
+      transform: translateY(-50%);
       transition: transform 0.3s ease;
     }
 
-    .toggle-btn svg.theme-icon {
-      width: 32px;
-      height: 32px;
-      transition: fill 0.3s, transform 0.3s ease;
+    [data-theme="dark"] .toggle-btn .switch {
+      background-color: var(--switch-bg-dark);
     }
 
-    [data-theme="light"] .theme-icon {
-      fill: #000000; /* Moon icon is black in light mode */
-    }
-
-    [data-theme="dark"] .theme-icon {
-      fill: #ffffff; /* Sun icon is white in dark mode */
+    [data-theme="dark"] .toggle-btn .dot {
+      transform: translate(30px, -50%);
+      background-color: var(--switch-dot-dark);
     }
 
     /* Gallery */
@@ -87,7 +106,7 @@
       flex-wrap: wrap;
       justify-content: flex-start;
       gap: 1rem;
-      padding-top: 80px; /* Adjusted to account for the fixed logo */
+      padding-top: 80px;
       padding-left: 1rem;
       padding-right: 1rem;
       width: 100%;
@@ -95,12 +114,12 @@
     }
 
     .artwork {
-      width: calc(16.66% - 1rem); /* Default for PC - 6 items per row */
+      width: calc(16.66% - 1rem);
       height: 0;
-      padding-bottom: 16.66%; /* Creates a square aspect ratio */
+      padding-bottom: 16.66%;
       border-radius: 50%;
       overflow: hidden;
-      border: 3px solid var(--border-color); /* Thicker border */
+      border: 3px solid var(--border-color);
       position: relative;
       transition: transform 0.3s, box-shadow 0.3s;
     }
@@ -120,19 +139,19 @@
     /* Responsive Design */
     @media (max-width: 1200px) {
       .artwork {
-        width: calc(16.66% - 1rem); /* Still 6 items per row for horizontal tablets and PCs */
+        width: calc(16.66% - 1rem);
       }
     }
 
     @media (max-width: 768px) {
       .artwork {
-        width: calc(33.33% - 1rem); /* 3 items per row for vertical phones */
+        width: calc(33.33% - 1rem);
       }
     }
 
     @media (max-width: 480px) {
       .artwork {
-        width: calc(33.33% - 1rem); /* 3 items per row for vertical phones */
+        width: calc(33.33% - 1rem);
       }
     }
   </style>
@@ -146,10 +165,9 @@
 
   <!-- Theme Toggle Button -->
   <button class="toggle-btn" onclick="toggleTheme()" id="themeToggle">
-    <svg class="theme-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-      <!-- Sun Icon (filled circle for Dark Mode) -->
-      <circle cx="12" cy="12" r="10" fill="#fff"/>
-    </svg>
+    <div class="switch">
+      <div class="dot"></div>
+    </div>
   </button>
 
   <!-- Art Gallery -->
@@ -166,23 +184,10 @@
   <script>
     const themeToggle = document.getElementById("themeToggle");
 
-    const sunSVG = `
-      <svg class="theme-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-        <circle cx="12" cy="12" r="10" fill="#fff"/>
-      </svg>`;
-
-    const moonSVG = `
-      <svg class="theme-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-        <!-- Moon with a bite (cookie bite) -->
-        <circle cx="12" cy="12" r="10" fill="#000"/>
-        <circle cx="16" cy="8" r="3" fill="#ffffff"/>
-      </svg>`;
-
     // Load saved theme from localStorage and apply it on page load
     window.addEventListener('DOMContentLoaded', () => {
       const savedTheme = localStorage.getItem('theme') || 'light';
       document.documentElement.setAttribute('data-theme', savedTheme);
-      themeToggle.innerHTML = savedTheme === 'dark' ? sunSVG : moonSVG;
     });
 
     function toggleTheme() {
@@ -190,7 +195,6 @@
       const currentTheme = html.getAttribute("data-theme");
       const newTheme = currentTheme === "light" ? "dark" : "light";
       html.setAttribute("data-theme", newTheme);
-      themeToggle.innerHTML = newTheme === "dark" ? sunSVG : moonSVG;
 
       // Save the theme preference in localStorage
       localStorage.setItem('theme', newTheme);
