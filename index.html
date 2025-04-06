@@ -83,6 +83,7 @@
       width: 100%;
       max-width: 1200px;
       margin: 0 auto;
+      transform: translateX(-20px); /* Shift gallery a little to the left */
     }
 
     .gallery-item {
@@ -171,9 +172,6 @@
     @media (max-width: 600px) {
       .gallery {
         grid-template-columns: repeat(3, 1fr);
-        max-width: 90%;
-        margin: 0 auto;
-        padding: 0;
       }
 
       .gallery-item {
@@ -183,6 +181,14 @@
 
       .gallery-item img {
         object-position: center center;
+      }
+
+      .gallery {
+        max-width: 90%;
+        margin: 0 auto;
+        padding-left: 10px;
+        padding-right: 10px;
+        transform: none; /* Override shift on mobile */
       }
     }
   </style>
@@ -241,7 +247,7 @@
     </div>
   </div>
 
-  <!-- Audio for toggle -->
+  <!-- Add the audio element for the sound effect -->
   <audio id="toggleSound" src="ScreenRecording_04-06-2025 13-00-43_1.mp3" preload="auto"></audio>
 
   <script>
@@ -256,6 +262,7 @@
     function toggleTheme() {
       toggleSound.currentTime = 0;
       toggleSound.play();
+
       const html = document.documentElement;
       const currentTheme = html.getAttribute("data-theme");
       const newTheme = currentTheme === "light" ? "dark" : "light";
