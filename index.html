@@ -96,7 +96,7 @@
       background-color: #f0f0f0;
       border-radius: 50%; /* Makes the images circular */
       transition: transform 0.3s ease;
-      border: 3px solid transparent; /* Reduced border thickness */
+      border: 3px solid transparent; /* Remove color and set to transparent initially */
     }
 
     [data-theme="light"] .gallery-item {
@@ -119,14 +119,6 @@
       height: 100%;
       object-fit: cover;
       border-radius: 50%; /* Ensures the image itself is circular */
-    }
-
-    .gallery-item.border1 {
-      border-color: #ff6347;
-    }
-
-    .gallery-item.border2 {
-      border-color: #4682b4;
     }
 
     .toggle-btn {
@@ -218,10 +210,10 @@
 
   <!-- Gallery section -->
   <div class="gallery">
-    <div class="gallery-item border1">
+    <div class="gallery-item">
       <img src="wavemoster (1) (1).png" alt="Artwork 1" />
     </div>
-    <div class="gallery-item border2">
+    <div class="gallery-item">
       <img src="IMG_6725 (1) (1) (1).png" alt="Artwork 2" />
     </div>
     <!-- Add more gallery items here -->
