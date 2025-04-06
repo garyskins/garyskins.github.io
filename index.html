@@ -237,8 +237,9 @@
     });
 
     function toggleTheme() {
-      // Play the sound effect when toggling the theme
-      toggleSound.play();
+      // Reset and play the sound immediately when toggling the theme
+      toggleSound.currentTime = 0;  // Reset audio to the start
+      toggleSound.play();          // Play the sound
 
       const html = document.documentElement;
       const currentTheme = html.getAttribute("data-theme");
