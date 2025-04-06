@@ -15,6 +15,8 @@
       --switch-bg-dark: #4CAF50; /* Green background for dark mode */
       --switch-dot-light: #fff; /* White dot for light mode */
       --switch-dot-dark: #fff;  /* White dot for dark mode */
+      --grid-light: rgba(211, 211, 211, 0.3);  /* Light gray grid lines */
+      --grid-dark: rgba(169, 169, 169, 0.3);   /* Dark gray grid lines */
     }
 
     [data-theme="light"] {
@@ -32,9 +34,19 @@
       font-family: Arial, sans-serif;
       transition: background-color 0.3s ease, color 0.3s ease;
       padding-top: 80px; /* Added space at the top to prevent title overlap */
+      background-image: 
+        linear-gradient(0deg, var(--grid-light) 1px, transparent 1px),
+        linear-gradient(90deg, var(--grid-light) 1px, transparent 1px);
+      background-size: 30px 30px; /* Grid cell size */
+      background-position: 0 0, 0 0;
     }
 
-  
+    [data-theme="dark"] body {
+      background-image: 
+        linear-gradient(0deg, var(--grid-dark) 1px, transparent 1px),
+        linear-gradient(90deg, var(--grid-dark) 1px, transparent 1px);
+    }
+
     /* Theme Toggle Button (Horizontal Switch) */
     .toggle-btn {
       position: fixed;
