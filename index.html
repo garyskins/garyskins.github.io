@@ -70,7 +70,7 @@
     /* Header Container (Align Title and Button) */
     .header-container {
       display: flex;
-      justify-content: space-between;
+      justify-content: flex-start;
       align-items: center;
       padding: 1rem;
       position: fixed;
@@ -79,6 +79,7 @@
       right: 0;
       z-index: 1000;
       background-color: transparent; /* Transparent background */
+      width: 100%;
     }
 
     /* Theme Toggle Button (Horizontal Switch) */
@@ -94,6 +95,8 @@
       justify-content: center;
       padding: 5px;
       transition: background-color 0.4s ease; /* Faster transition */
+      position: absolute;
+      right: 20px; /* Align the button to the right */
     }
 
     .toggle-btn .switch {
