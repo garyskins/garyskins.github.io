@@ -44,12 +44,13 @@
 
     /* Logo styling */
     .logo {
-      position: fixed;  /* Fixed positioning to keep the logo at the top */
-      top: 1rem;        /* 1rem from the top of the page */
+      position: relative;  /* Changed from fixed to relative */
+      top: 0;               /* Keep logo at the top of the page */
       left: 50%;
       transform: translateX(-50%);
       z-index: 1000;
       transition: opacity 0.5s ease, visibility 0.3s ease, filter 0.5s ease;
+      margin-bottom: 20px;  /* Add space below the logo */
     }
 
     .logo img {
@@ -198,14 +199,12 @@
 
   <script>
     const themeToggle = document.getElementById("themeToggle");
-    const logo = document.querySelector('.logo');
 
     window.addEventListener('DOMContentLoaded', () => {
       const savedTheme = localStorage.getItem('theme') || 'light';
       document.documentElement.setAttribute('data-theme', savedTheme);
     });
 
-    // Function to toggle the theme
     function toggleTheme() {
       const html = document.documentElement;
       const currentTheme = html.getAttribute("data-theme");
