@@ -34,27 +34,7 @@
       padding-top: 80px; /* Added space at the top to prevent title overlap */
     }
 
-    /* Logo (Title) */
-    .logo-container {
-      position: sticky; /* Keep title fixed at the top */
-      top: 0;
-      left: 50%;
-      transform: translateX(-50%);
-      font-family: 'Dancing Script', cursive;
-      font-size: 3rem;
-      font-weight: 400;
-      color: var(--text-light);
-      transition: color 0.3s ease;
-      margin-bottom: 2rem; /* Space between title and gallery */
-      z-index: 1000; /* Ensure the title is always on top */
-      background: var(--bg-light); /* Background color to ensure it's readable */
-      padding: 10px 0; /* Padding for spacing */
-    }
-
-    [data-theme="dark"] .logo-container {
-      color: var(--text-dark);
-    }
-
+  
     /* Theme Toggle Button (Horizontal Switch) */
     .toggle-btn {
       position: fixed;
@@ -106,11 +86,6 @@
   </style>
 </head>
 <body>
-
-  <!-- Logo (Title) -->
-  <div class="logo-container">
-    garyisking
-  </div>
 
   <!-- Theme Toggle Button -->
   <button class="toggle-btn" onclick="toggleTheme()" id="themeToggle">
