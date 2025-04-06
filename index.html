@@ -49,13 +49,15 @@
       justify-content: center;
     }
 
-    .toggle-btn svg {
+    .toggle-btn svg.theme-icon {
       width: 24px;
       height: 24px;
+      stroke-width: 1.5;
+      stroke: none;
+      fill: currentColor;
       transition: fill 0.3s;
     }
 
-    /* Icon color control */
     [data-theme="light"] .theme-icon {
       fill: #000000;
     }
@@ -98,7 +100,7 @@
   <header>
     <h1>My Artwork</h1>
     <button class="toggle-btn" onclick="toggleTheme()" id="themeToggle">
-      <!-- Start with moon icon -->
+      <!-- Default to moon icon -->
       <svg class="theme-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
         <path d="M21 12.79A9 9 0 0111.21 3 7 7 0 0012 17a7 7 0 009-4.21z"/>
       </svg>
