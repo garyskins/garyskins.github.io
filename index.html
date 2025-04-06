@@ -6,7 +6,197 @@
   <title>garyskins</title>
   <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap" rel="stylesheet">
   <style>
-    /* Your existing styles remain unchanged */
+    :root {
+      --bg-light: #f0f0f0;
+      --text-light: #000000;
+      --bg-dark: #111111;
+      --text-dark: #ffffff;
+      --switch-bg-light: #888;
+      --switch-bg-dark: #4CAF50;
+      --switch-dot-light: #fff;
+      --switch-dot-dark: #fff;
+    }
+
+    [data-theme="light"], [data-theme="dark"] {
+      transition: background-color 0.5s ease, color 0.5s ease;
+    }
+
+    [data-theme="light"] {
+      background-color: var(--bg-light);
+      color: var(--text-light);
+    }
+
+    [data-theme="dark"] {
+      background-color: var(--bg-dark);
+      color: var(--text-dark);
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      padding-top: 80px;
+      transition: background-color 0.5s ease, color 0.5s ease;
+    }
+
+    /* Logo animation */
+    @keyframes fadeSlideDown {
+      0% {
+        opacity: 0;
+        transform: translate(-50%, -20px);
+      }
+      100% {
+        opacity: 1;
+        transform: translate(-50%, 0);
+      }
+    }
+
+    /* Updated .logo CSS for movement with content */
+    .logo {
+      position: absolute; /* Keeps it in the content flow */
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%); /* Centering the logo horizontally */
+      z-index: 1000;
+      margin-top: 20px; /* Optional: Adjust the space between the logo and the top of the page */
+      opacity: 0;
+      transition: filter 0.5s ease;
+    }
+
+    .logo img {
+      width: 150px;
+      transform: scale(1.55); /* 55% zoom */
+      transition: filter 0.5s ease;
+    }
+
+    .logo.animate {
+      animation: fadeSlideDown 1.2s ease-out forwards;
+    }
+
+    [data-theme="dark"] .logo img {
+      filter: invert(1);
+    }
+
+    /* Adjusted gallery layout */
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr); /* 6 items per row by default */
+      gap: 20px; /* Increased gap between images */
+      padding: 20px;
+      padding-top: 100px; /* Adjusted to move gallery further down */
+      width: 100%;
+      max-width: 1200px; /* Ensures that the gallery doesn't stretch too wide */
+      margin: 0 auto; /* Center gallery with equal spacing on both sides */
+    }
+
+    /* Adjusted gallery item borders */
+    .gallery-item {
+      position: relative;
+      width: 100%;
+      padding-top: 100%; /* Ensures a square aspect ratio */
+      overflow: hidden;
+      background-color: #f0f0f0;
+      border-radius: 50%; /* Makes the images circular */
+      transition: transform 0.3s ease, border-color 0.5s ease; /* Added transition for border-color */
+      border: 2px solid #bcbcbc; /* Light mode border */
+    }
+
+    /* Dark mode border color */
+    [data-theme="dark"] .gallery-item {
+      border-color: #404040; /* Dark mode border */
+    }
+
+    /* Hover effect for gallery item - Updated to 50% bigger */
+    .gallery-item:hover {
+      transform: scale(1.2);
+    }
+
+    /* Gallery item images */
+    .gallery-item img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 50%; /* Ensures the image itself is circular */
+    }
+
+    /* Theme toggle button */
+    .toggle-btn {
+      position: fixed;
+      top: 1rem;
+      right: 1rem;
+      background: none;
+      border: none;
+      cursor: pointer;
+      width: 80px;
+      height: 40px;
+      border-radius: 30px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 5px;
+      z-index: 1000;
+      transition: background-color 0.4s ease;
+    }
+
+    .toggle-btn .switch {
+      width: 100%;
+      height: 100%;
+      background-color: var(--switch-bg-light);
+      border-radius: 30px;
+      position: relative;
+      transition: background-color 0.4s ease;
+    }
+
+    .toggle-btn .dot {
+      width: 20px;
+      height: 20px;
+      background-color: var(--switch-dot-light);
+      border-radius: 50%;
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      transition: transform 0.4s ease, left 0.4s ease;
+    }
+
+    [data-theme="light"] .toggle-btn .dot {
+      left: 5px;
+    }
+
+    [data-theme="dark"] .toggle-btn .dot {
+      left: calc(100% - 25px);
+    }
+
+    [data-theme="dark"] .toggle-btn .switch {
+      background-color: var(--switch-bg-dark);
+    }
+
+    [data-theme="dark"] .toggle-btn .dot {
+      background-color: var(--switch-dot-dark);
+    }
+
+    @media (max-width: 600px) {
+      .gallery {
+        grid-template-columns: repeat(3, 1fr); /* 3 items per row on mobile */
+      }
+
+      .gallery-item {
+        padding-top: 100%; /* Keep square shape on mobile */
+        border-width: 5px;
+      }
+
+      .gallery-item img {
+        object-position: center center;
+      }
+
+      .gallery {
+        max-width: 90%; /* Make it smaller on mobile as well */
+        margin: 0 auto; /* Ensure the gallery is centered */
+        padding-left: 10px;
+        padding-right: 10px;
+      }
+    }
   </style>
 </head>
 <body>
@@ -34,19 +224,17 @@
     <!-- Add more gallery items here -->
   </div>
 
-  <!-- Add the audio element for the new sound effect -->
-  <audio id="pageLoadSound" src="Opening.sound.mp3" preload="auto"></audio>
+  <!-- Add the audio element for the sound effect -->
+  <audio id="toggleSound" src="ScreenRecording_04-06-2025 13-00-43_1.mp3" preload="auto"></audio>
 
   <script>
-    const pageLoadSound = document.getElementById("pageLoadSound");
-
-    window.addEventListener('DOMContentLoaded', () => {
-      // Play the new sound as soon as the page loads
-      pageLoadSound.play();
-    });
-
     const themeToggle = document.getElementById("themeToggle");
     const toggleSound = document.getElementById("toggleSound");
+
+    window.addEventListener('DOMContentLoaded', () => {
+      const savedTheme = localStorage.getItem('theme') || 'light';
+      document.documentElement.setAttribute('data-theme', savedTheme);
+    });
 
     function toggleTheme() {
       // Reset and play the sound immediately when toggling the theme
