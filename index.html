@@ -15,6 +15,8 @@
       --switch-bg-dark: #4CAF50;
       --switch-dot-light: #fff;
       --switch-dot-dark: #fff;
+      --youtube-icon-light: #000;
+      --youtube-icon-dark: #fff;
     }
 
     [data-theme="light"], [data-theme="dark"] {
@@ -121,22 +123,39 @@
       border-color: #4682b4;
     }
 
-    .toggle-btn {
+    .toggle-btn, .youtube-btn {
       position: fixed;
       top: 1rem;
-      right: 1rem;
       background: none;
       border: none;
       cursor: pointer;
-      width: 80px;
+      width: 40px;
       height: 40px;
-      border-radius: 30px;
+      border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 5px;
       z-index: 1000;
       transition: background-color 0.4s ease;
+    }
+
+    .toggle-btn {
+      right: 1rem;
+    }
+
+    .youtube-btn {
+      left: 1rem;
+    }
+
+    .youtube-btn svg {
+      width: 24px;
+      height: 24px;
+      fill: var(--youtube-icon-light);
+      transition: fill 0.4s ease;
+    }
+
+    [data-theme="dark"] .youtube-btn svg {
+      fill: var(--youtube-icon-dark);
     }
 
     .toggle-btn .switch {
@@ -200,6 +219,14 @@
   <div class="logo" id="logo">
     <img src="IMG_6130 (1).PNG" alt="Logo">
   </div>
+
+  <!-- YouTube button -->
+  <button class="youtube-btn" onclick="window.location.href='https://www.youtube.com/channel/your-channel-id'">
+    <!-- YouTube Icon (SVG) -->
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+      <path d="M23.498 6.186c-.265-.992-1.004-1.76-1.979-1.989C20.92 4 12 4 12 4s-8.92 0-9.52.197c-.975.229-1.713.997-1.979 1.989-.17.648-.262 2.059-.262 2.059s0 1.411.262 2.059c.266.993 1.004 1.76 1.979 1.989C4.92 20 12 20 12 20s8.92 0 9.52-.197c.975-.229 1.713-.997 1.979-1.989.17-.648.262-2.059.262-2.059s0-1.411-.262-2.059zM9 15V9l6 3-6 3z"/>
+    </svg>
+  </button>
 
   <!-- Theme toggle button -->
   <button class="toggle-btn" onclick="toggleTheme()" id="themeToggle">
