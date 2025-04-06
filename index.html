@@ -72,9 +72,9 @@
     /* Header Container (Align Title and Button) */
     .header-container {
       display: flex;
-      justify-content: space-between;
+      justify-content: flex-end;  /* Align the button to the right */
       align-items: center;
-      padding: 1rem 15px; /* Added padding to both sides */
+      padding: 1rem 20px; /* Added padding to both sides */
       position: fixed;
       top: 0;
       left: 0;
@@ -136,17 +136,17 @@
 
   <!-- Header Container with Signature and Theme Toggle Button -->
   <div class="header-container">
-    <!-- Signature -->
-    <div class="signature">
-      garyisking
-    </div>
-
     <!-- Theme Toggle Button -->
     <button class="toggle-btn" onclick="toggleTheme()" id="themeToggle">
       <div class="switch">
         <div class="dot"></div>
       </div>
     </button>
+  </div>
+
+  <!-- Signature (Centered Title) -->
+  <div class="signature">
+    garyisking
   </div>
 
   <!-- Theme Toggle Script -->
