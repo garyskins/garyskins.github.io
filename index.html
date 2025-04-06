@@ -71,11 +71,12 @@
     }
 
     .gallery-item {
-      width: 100%;
-      height: 200px;
       position: relative;
-      border-radius: 50%;
+      width: 100%;
+      padding-top: 100%; /* This ensures the container is always square */
       overflow: hidden;
+      border-radius: 50%;
+      background-color: #f0f0f0; /* Placeholder background color */
       transition: transform 0.3s ease;
     }
 
@@ -84,20 +85,23 @@
     }
 
     .gallery-item img {
+      position: absolute;
+      top: 0;
+      left: 0;
       width: 100%;
       height: 100%;
       object-fit: cover;
-      border-radius: 50%;
+      border-radius: 50%; /* Ensures the image is circular */
       transition: border 0.3s ease;
     }
 
-    /* Placeholder for border styling */
+    /* Example borders for images */
     .gallery-item.border1 img {
-      border: 8px solid #ff6347; /* Example of a border color */
+      border: 8px solid #ff6347; /* Example border color */
     }
 
     .gallery-item.border2 img {
-      border: 8px solid #4682b4; /* Example of a border color */
+      border: 8px solid #4682b4; /* Example border color */
     }
 
     .toggle-btn {
