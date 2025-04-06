@@ -1,4 +1,4 @@
-<!DOCTYPE html> 
+<!DOCTYPE html>
 <html lang="en" data-theme="light">
 <head>
   <meta charset="UTF-8" />
@@ -96,7 +96,15 @@
       background-color: #f0f0f0;
       border-radius: 50%; /* Makes the images circular */
       transition: transform 0.3s ease;
-      border: 8px solid transparent;
+      border: 3px solid transparent; /* Reduced border thickness */
+    }
+
+    [data-theme="light"] .gallery-item {
+      border-color: #d3d3d3; /* Light gray border in light mode */
+    }
+
+    [data-theme="dark"] .gallery-item {
+      border-color: #555555; /* Dark gray border in dark mode */
     }
 
     .gallery-item:hover {
