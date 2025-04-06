@@ -78,8 +78,8 @@
       display: grid;
       grid-template-columns: repeat(6, 1fr);
       gap: 20px;
-      padding: 20px;
       padding-top: 100px;
+      padding-inline: 20px;
       width: 100%;
       max-width: 1200px;
       margin: 0 auto;
@@ -171,6 +171,7 @@
     @media (max-width: 600px) {
       .gallery {
         grid-template-columns: repeat(3, 1fr);
+        padding-inline: 10px;
       }
 
       .gallery-item {
@@ -180,13 +181,6 @@
 
       .gallery-item img {
         object-position: center center;
-      }
-
-      .gallery {
-        max-width: 90%;
-        margin: 0 auto;
-        padding-left: 10px;
-        padding-right: 10px;
       }
     }
   </style>
@@ -207,42 +201,18 @@
 
   <!-- Gallery section -->
   <div class="gallery">
-    <div class="gallery-item">
-      <img src="wavemoster (1) (1).png" alt="Artwork 1" />
-    </div>
-    <div class="gallery-item">
-      <img src="IMG_6725 (1) (1) (1).png" alt="Artwork 2" />
-    </div>
-    <div class="gallery-item">
-      <img src="artwork3.png" alt="Artwork 3" />
-    </div>
-    <div class="gallery-item">
-      <img src="artwork4.png" alt="Artwork 4" />
-    </div>
-    <div class="gallery-item">
-      <img src="artwork5.png" alt="Artwork 5" />
-    </div>
-    <div class="gallery-item">
-      <img src="artwork6.png" alt="Artwork 6" />
-    </div>
-    <div class="gallery-item">
-      <img src="artwork7.png" alt="Artwork 7" />
-    </div>
-    <div class="gallery-item">
-      <img src="artwork8.png" alt="Artwork 8" />
-    </div>
-    <div class="gallery-item">
-      <img src="artwork9.png" alt="Artwork 9" />
-    </div>
-    <div class="gallery-item">
-      <img src="artwork10.png" alt="Artwork 10" />
-    </div>
-    <div class="gallery-item">
-      <img src="artwork11.png" alt="Artwork 11" />
-    </div>
-    <div class="gallery-item">
-      <img src="artwork12.png" alt="Artwork 12" />
-    </div>
+    <div class="gallery-item"><img src="wavemoster (1) (1).png" alt="Artwork 1" /></div>
+    <div class="gallery-item"><img src="IMG_6725 (1) (1) (1).png" alt="Artwork 2" /></div>
+    <div class="gallery-item"><img src="artwork3.png" alt="Artwork 3" /></div>
+    <div class="gallery-item"><img src="artwork4.png" alt="Artwork 4" /></div>
+    <div class="gallery-item"><img src="artwork5.png" alt="Artwork 5" /></div>
+    <div class="gallery-item"><img src="artwork6.png" alt="Artwork 6" /></div>
+    <div class="gallery-item"><img src="artwork7.png" alt="Artwork 7" /></div>
+    <div class="gallery-item"><img src="artwork8.png" alt="Artwork 8" /></div>
+    <div class="gallery-item"><img src="artwork9.png" alt="Artwork 9" /></div>
+    <div class="gallery-item"><img src="artwork10.png" alt="Artwork 10" /></div>
+    <div class="gallery-item"><img src="artwork11.png" alt="Artwork 11" /></div>
+    <div class="gallery-item"><img src="artwork12.png" alt="Artwork 12" /></div>
   </div>
 
   <!-- Add the audio element for the sound effect -->
