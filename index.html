@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE html> 
 <html lang="en" data-theme="light">
 <head>
   <meta charset="UTF-8" />
@@ -50,13 +50,14 @@
       }
     }
 
+    /* Updated .logo CSS */
     .logo {
-      position: relative;
+      position: fixed; /* Changed to fixed so it stays at the top */
       top: 0;
       left: 50%;
-      transform: translateX(-50%);
+      transform: translateX(-50%); /* This keeps it centered */
       z-index: 1000;
-      margin-bottom: 50px;
+      margin-top: 20px; /* Optional: Adjust the space between the logo and the top of the page */
       opacity: 0;
       transition: filter 0.5s ease;
     }
