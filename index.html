@@ -34,7 +34,6 @@
       justify-content: space-between;
       align-items: center;
       padding: 1rem;
-      border-bottom: 1px solid var(--border-color);
     }
 
     .toggle-btn {
@@ -66,6 +65,17 @@
       fill: #ffffff;
     }
 
+    .logo {
+      height: 40px;
+    }
+
+    .header-section {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+    }
+
     .gallery {
       display: flex;
       flex-wrap: wrap;
@@ -92,33 +102,25 @@
     }
 
     .artwork:hover {
-      transform: scale(1.3);
+      transform: scale(1.05);
     }
   </style>
 </head>
 <body>
   <header>
-    <header>
-  <div style="flex: 1;"></div>
-  <img src="your-logo.png" alt="Logo" style="height: 40px;" />
-  <button class="toggle-btn" onclick="toggleTheme()" id="themeToggle">
-    <!-- Default to moon icon -->
-    <svg class="theme-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-      <path d="M21 12.79A9 9 0 0111.21 3 7 7 0 0012 17a7 7 0 009-4.21z"/>
-    </svg>
-  </button>
-</header>
-
-    <button class="toggle-btn" onclick="toggleTheme()" id="themeToggle">
-      <!-- Default to moon icon -->
-      <svg class="theme-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-        <path d="M21 12.79A9 9 0 0111.21 3 7 7 0 0012 17a7 7 0 009-4.21z"/>
-      </svg>
-    </button>
+    <div class="header-section">
+      <div style="flex: 1;"></div>
+      <img src="your-logo.png" alt="Logo" class="logo" />
+      <button class="toggle-btn" onclick="toggleTheme()" id="themeToggle">
+        <svg class="theme-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+          <path d="M21 12.79A9 9 0 0111.21 3 7 7 0 0012 17a7 7 0 009-4.21z"/>
+        </svg>
+      </button>
+    </div>
   </header>
 
   <div class="gallery">
-    <!-- Replace these with your actual artwork -->
+    <!-- Replace with your actual artwork -->
     <div class="artwork"><img src="https://via.placeholder.com/300" alt="Artwork 1" /></div>
     <div class="artwork"><img src="https://via.placeholder.com/300" alt="Artwork 2" /></div>
     <div class="artwork"><img src="https://via.placeholder.com/300" alt="Artwork 3" /></div>
