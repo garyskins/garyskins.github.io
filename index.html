@@ -1,201 +1,164 @@
-<!DOCTYPE html>
-<html lang="en" data-theme="light">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>My Artwork Gallery</title>
-  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap" rel="stylesheet">
-  <style>
-    :root {
-      --bg-light: #ffffff;
-      --text-light: #000000;
-      --bg-dark: #000000;
-      --text-dark: #ffffff;
-      --switch-bg-light: #888;
-      --switch-bg-dark: #4CAF50;
-      --switch-dot-light: #fff;
-      --switch-dot-dark: #fff;
-      --grid-light: rgba(169, 169, 169, 0.4);
-      --grid-dark: rgba(50, 50, 50, 0.8);
-    }
+<style>
+  :root {
+    --bg-light: #ffffff;
+    --text-light: #000000;
+    --bg-dark: #000000;
+    --text-dark: #ffffff;
+    --switch-bg-light: #888;
+    --switch-bg-dark: #4CAF50;
+    --switch-dot-light: #fff;
+    --switch-dot-dark: #fff;
+    --grid-light: rgba(169, 169, 169, 0.4);
+    --grid-dark: rgba(50, 50, 50, 0.8);
+  }
 
-    [data-theme="light"] {
-      background-color: var(--bg-light);
-      color: var(--text-light);
-    }
+  [data-theme="light"] {
+    background-color: var(--bg-light);
+    color: var(--text-light);
+  }
 
-    [data-theme="dark"] {
-      background-color: var(--bg-dark);
-      color: var(--text-dark);
-    }
+  [data-theme="dark"] {
+    background-color: var(--bg-dark);
+    color: var(--text-dark);
+  }
 
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      padding-top: 80px;
-      background-image:
-        linear-gradient(0deg, var(--grid-light) 1px, transparent 1px),
-        linear-gradient(90deg, var(--grid-light) 1px, transparent 1px);
-      background-size: 30px 30px;
-      background-position: 0 0, 0 0;
-      height: 100vh;
-      width: 100%;
-    }
+  body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    padding-top: 80px;
+    background-image:
+      linear-gradient(0deg, var(--grid-light) 1px, transparent 1px),
+      linear-gradient(90deg, var(--grid-light) 1px, transparent 1px);
+    background-size: 30px 30px;
+    background-position: 0 0, 0 0;
+    height: 100vh;
+    width: 100%;
+  }
 
-    [data-theme="dark"] body {
-      background-image:
-        linear-gradient(0deg, var(--grid-dark) 1px, transparent 1px),
-        linear-gradient(90deg, var(--grid-dark) 1px, transparent 1px);
-    }
+  [data-theme="dark"] body {
+    background-image:
+      linear-gradient(0deg, var(--grid-dark) 1px, transparent 1px),
+      linear-gradient(90deg, var(--grid-dark) 1px, transparent 1px);
+  }
 
-    .signature {
-      position: fixed;
-      top: 1rem;
-      left: 50%;
-      transform: translateX(-50%);
-      font-family: 'Dancing Script', cursive;
-      font-size: 2.5rem;
-      color: var(--text-light);
-      z-index: 1000;
-    }
+  .signature {
+    position: fixed;
+    top: 1rem;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: 'Dancing Script', cursive;
+    font-size: 2.5rem;
+    color: var(--text-light);
+    z-index: 1000;
+  }
 
-    [data-theme="dark"] .signature {
-      color: var(--text-dark);
-    }
+  [data-theme="dark"] .signature {
+    color: var(--text-dark);
+  }
 
+  .gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 30px; /* Increased gap between images */
+    padding: 20px;
+  }
+
+  .gallery-item {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 1; /* Ensures the container is always square */
+    overflow: hidden;
+    border-radius: 50%; /* Ensures the container is circular */
+    background-color: #f0f0f0; /* Placeholder background color */
+    transition: transform 0.3s ease;
+    border: 8px solid transparent; /* Default border color */
+    transition: transform 0.3s ease, border 0.3s ease;
+  }
+
+  .gallery-item:hover {
+    transform: scale(1.05);
+  }
+
+  .gallery-item img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%; /* Ensures the image is circular */
+  }
+
+  /* Example borders for images */
+  .gallery-item.border1 {
+    border-color: #ff6347; /* Example border color */
+  }
+
+  .gallery-item.border2 {
+    border-color: #4682b4; /* Example border color */
+  }
+
+  .toggle-btn {
+    position: fixed;
+    top: 1rem;
+    right: 1rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+    width: 60px;
+    height: 30px;
+    border-radius: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5px;
+    z-index: 1000;
+    transition: background-color 0.4s ease;
+  }
+
+  .toggle-btn .switch {
+    width: 100%;
+    height: 100%;
+    background-color: var(--switch-bg-light);
+    border-radius: 30px;
+    position: relative;
+    transition: background-color 0.4s ease;
+  }
+
+  .toggle-btn .dot {
+    width: 20px;
+    height: 20px;
+    background-color: var(--switch-dot-light);
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    left: 5px;
+    transform: translateY(-50%);
+    transition: transform 0.4s ease;
+  }
+
+  [data-theme="dark"] .toggle-btn .switch {
+    background-color: var(--switch-bg-dark);
+  }
+
+  [data-theme="dark"] .toggle-btn .dot {
+    transform: translate(30px, -50%);
+    background-color: var(--switch-dot-dark);
+  }
+
+  /* Media Queries for Smaller Screens */
+  @media (max-width: 600px) {
     .gallery {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-      gap: 20px;
-      padding: 20px;
+      grid-template-columns: repeat(3, 1fr); /* 3 items per row on vertical mobile */
     }
-
     .gallery-item {
-      position: relative;
-      width: 100%;
-      aspect-ratio: 1; /* Ensures the container is always square */
-      overflow: hidden;
-      border-radius: 50%; /* Ensures the container is circular */
-      background-color: #f0f0f0; /* Placeholder background color */
-      transition: transform 0.3s ease;
-      border: 8px solid transparent; /* Default border color */
-      transition: transform 0.3s ease, border 0.3s ease;
+      border-width: 5px; /* Thinner border */
     }
+  }
 
-    .gallery-item:hover {
-      transform: scale(1.05);
+  @media (min-width: 600px) and (max-width: 1024px) {
+    .gallery {
+      grid-template-columns: repeat(6, 1fr); /* 6 items per row on horizontal mobile */
     }
-
-    .gallery-item img {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      border-radius: 50%; /* Ensures the image is circular */
-    }
-
-    /* Example borders for images */
-    .gallery-item.border1 {
-      border-color: #ff6347; /* Example border color */
-    }
-
-    .gallery-item.border2 {
-      border-color: #4682b4; /* Example border color */
-    }
-
-    .toggle-btn {
-      position: fixed;
-      top: 1rem;
-      right: 1rem;
-      background: none;
-      border: none;
-      cursor: pointer;
-      width: 60px;
-      height: 30px;
-      border-radius: 30px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 5px;
-      z-index: 1000;
-      transition: background-color 0.4s ease;
-    }
-
-    .toggle-btn .switch {
-      width: 100%;
-      height: 100%;
-      background-color: var(--switch-bg-light);
-      border-radius: 30px;
-      position: relative;
-      transition: background-color 0.4s ease;
-    }
-
-    .toggle-btn .dot {
-      width: 20px;
-      height: 20px;
-      background-color: var(--switch-dot-light);
-      border-radius: 50%;
-      position: absolute;
-      top: 50%;
-      left: 5px;
-      transform: translateY(-50%);
-      transition: transform 0.4s ease;
-    }
-
-    [data-theme="dark"] .toggle-btn .switch {
-      background-color: var(--switch-bg-dark);
-    }
-
-    [data-theme="dark"] .toggle-btn .dot {
-      transform: translate(30px, -50%);
-      background-color: var(--switch-dot-dark);
-    }
-
-    /* Media Queries for Smaller Screens */
-    @media (max-width: 600px) {
-      .gallery-item {
-        border-width: 5px; /* Thinner border */
-      }
-    }
-  </style>
-</head>
-<body>
-
-  <div class="signature">garyisking</div>
-
-  <button class="toggle-btn" onclick="toggleTheme()" id="themeToggle">
-    <div class="switch">
-      <div class="dot"></div>
-    </div>
-  </button>
-
-  <div class="gallery">
-    <div class="gallery-item border1">
-      <img src="your-artwork1.jpg" alt="Artwork 1" />
-    </div>
-    <div class="gallery-item border2">
-      <img src="your-artwork2.jpg" alt="Artwork 2" />
-    </div>
-    <!-- Add more gallery items here -->
-  </div>
-
-  <script>
-    const themeToggle = document.getElementById("themeToggle");
-
-    window.addEventListener('DOMContentLoaded', () => {
-      const savedTheme = localStorage.getItem('theme') || 'light';
-      document.documentElement.setAttribute('data-theme', savedTheme);
-    });
-
-    function toggleTheme() {
-      const html = document.documentElement;
-      const currentTheme = html.getAttribute("data-theme");
-      const newTheme = currentTheme === "light" ? "dark" : "light";
-      html.setAttribute("data-theme", newTheme);
-      localStorage.setItem('theme', newTheme);
-    }
-  </script>
-</body>
-</html>
+  }
+</style>
