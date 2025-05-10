@@ -46,18 +46,13 @@
       z-index: 1000;
       margin-top: 20px;
       opacity: 0;
-      transition: filter 0.5s ease;
+      transition: opacity 1s ease-in-out;
     }
 
     .logo img {
       width: 150px;
       transform: scale(1.55);
       transition: filter 0.5s ease;
-    }
-
-    .logo.animate {
-      opacity: 1;
-      transition: opacity 1.5s ease-in-out;
     }
 
     [data-theme="dark"] .logo img {
@@ -221,13 +216,15 @@
       const savedTheme = localStorage.getItem('theme') || 'light';
       document.documentElement.setAttribute('data-theme', savedTheme);
 
-      // Ensure logo is animated correctly when the page is loaded
+      // Show the logo with fade-in effect after page load
       const logo = document.getElementById('logo');
-      logo.classList.add('animate');
+      logo.style.opacity = '1';  // Ensure logo is visible
     });
 
     function toggleTheme() {
       toggleSound.currentTime = 0;
       toggleSound.play();
       const html = document.documentElement;
-      const currentTheme = html.getAttribute("data
+      const currentTheme = html.getAttribute("data-theme");
+      const newTheme = currentTheme === "light" ? "dark" : "light";
+      html.setAttribute("data-theme", new
