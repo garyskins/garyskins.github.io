@@ -101,7 +101,7 @@
     }
 
     .gallery-item:hover {
-      transform: scale(1.2);
+      transform: scale(1.05);
     }
 
     .gallery-item img {
@@ -110,7 +110,7 @@
       left: 0;
       width: 100%;
       height: 100%;
-      object-fit: cover;
+      object-fit: contain; /* use contain to prevent zoomed/cropped look */
       border-radius: 50%;
     }
 
@@ -171,96 +171,58 @@
     @media (max-width: 600px) {
       .gallery {
         grid-template-columns: repeat(3, 1fr);
+        max-width: 90%;
+        margin: 0 auto;
+        padding-left: 10px;
+        padding-right: 10px;
       }
 
       .gallery-item {
         padding-top: 100%;
         border-width: 5px;
       }
-
-      .gallery-item img {
-        object-position: center center;
-      }
-
-      .gallery {
-        max-width: 90%;
-        margin: 0 auto;
-        padding-left: 10px;
-        padding-right: 10px;
-      }
     }
   </style>
 </head>
 <body>
 
-  <!-- Logo at top center -->
+  <!-- Logo -->
   <div class="logo" id="logo">
     <img src="IMG_6130 (1).PNG" alt="Logo">
   </div>
 
-  <!-- Theme toggle button -->
+  <!-- Theme Toggle -->
   <button class="toggle-btn" onclick="toggleTheme()" id="themeToggle">
     <div class="switch">
       <div class="dot"></div>
     </div>
   </button>
 
-  <!-- Gallery section -->
-   </div>
-  <div class="gallery-item">
-      <img src="reffffff (1) (1).png" alt="Artwork 1" />
-    <div class="gallery-item">
-      <img src="wavemoster (1) (1).png" alt="Artwork 1" />
-    </div>
-    <div class="gallery-item">
-      <img src="IMG_6725 (1) (1) (1).png" alt="Artwork 2" />
-    </div>
-    <div class="gallery-item">
-      <img src="cookie (1).png" alt="Artwork 3" />
-    </div>
-    <div class="gallery-item">
-      <img src="potatoesimp (1).png" alt="Artwork 4" />
-    </div>
-    <div class="gallery-item">
-      <img src="pooppy (1).png" alt="Artwork 5" />
-    </div>
-    <div class="gallery-item">
-      <img src="broccc (1).png" alt="Artwork 6" />
-    </div>
-    <div class="gallery-item">
-      <img src="chikincart (2) (1).png" alt="Artwork 7" />
-    </div>
-    <div class="gallery-item">
-      <img src="swourdd (2).png" alt="Artwork 8" />
-    </div>
-    <div class="gallery-item">
-      <img src="eyye (1).png" alt="Artwork 9" />
-    </div>
-    <div class="gallery-item">
-      <img src="glazedd (1).png" alt="Artwork 10" />
-    </div>
-    <div class="gallery-item">
-      <img src="hertdonut (1).png" alt="Artwork 11" />
-    </div>
-    <div class="gallery-item">
-      <img src="uncc (1) (1).png" alt="Artwork 12" />
-    </div>
-     <div class="gallery-item">
-      <img src="saw3000 (1).png" alt="Artwork 12" />
-     </div>
-     <div class="gallery-item">
-      <img src="sparkleee (1).png" alt="Artwork 12" />
-    </div>
-     <div class="gallery-item">
-      <img src="cattt (1).png" alt="Artwork 12" />
-    </div>
-     <div class="gallery-item">
-      <img src="sthnake (1).png" alt="Artwork 12" />
-    </div>
+  <!-- Gallery -->
+  <div class="gallery">
+    <div class="gallery-item"><img src="reffffff (1) (1).png" alt="Artwork 1" /></div>
+    <div class="gallery-item"><img src="wavemoster (1) (1).png" alt="Artwork 2" /></div>
+    <div class="gallery-item"><img src="IMG_6725 (1) (1) (1).png" alt="Artwork 3" /></div>
+    <div class="gallery-item"><img src="cookie (1).png" alt="Artwork 4" /></div>
+    <div class="gallery-item"><img src="potatoesimp (1).png" alt="Artwork 5" /></div>
+    <div class="gallery-item"><img src="pooppy (1).png" alt="Artwork 6" /></div>
+    <div class="gallery-item"><img src="broccc (1).png" alt="Artwork 7" /></div>
+    <div class="gallery-item"><img src="chikincart (2) (1).png" alt="Artwork 8" /></div>
+    <div class="gallery-item"><img src="swourdd (2).png" alt="Artwork 9" /></div>
+    <div class="gallery-item"><img src="eyye (1).png" alt="Artwork 10" /></div>
+    <div class="gallery-item"><img src="glazedd (1).png" alt="Artwork 11" /></div>
+    <div class="gallery-item"><img src="hertdonut (1).png" alt="Artwork 12" /></div>
+    <div class="gallery-item"><img src="uncc (1) (1).png" alt="Artwork 13" /></div>
+    <div class="gallery-item"><img src="saw3000 (1).png" alt="Artwork 14" /></div>
+    <div class="gallery-item"><img src="sparkleee (1).png" alt="Artwork 15" /></div>
+    <div class="gallery-item"><img src="cattt (1).png" alt="Artwork 16" /></div>
+    <div class="gallery-item"><img src="sthnake (1).png" alt="Artwork 17" /></div>
+  </div>
 
-  <!-- Add the audio element for the sound effect -->
+  <!-- Audio -->
   <audio id="toggleSound" src="ScreenRecording_04-06-2025 13-00-43_1.mp3" preload="auto"></audio>
 
+  <!-- Scripts -->
   <script>
     const themeToggle = document.getElementById("themeToggle");
     const toggleSound = document.getElementById("toggleSound");
@@ -273,7 +235,6 @@
     function toggleTheme() {
       toggleSound.currentTime = 0;
       toggleSound.play();
-
       const html = document.documentElement;
       const currentTheme = html.getAttribute("data-theme");
       const newTheme = currentTheme === "light" ? "dark" : "light";
@@ -282,17 +243,4 @@
     }
 
     const logo = document.getElementById('logo');
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          logo.classList.add('animate');
-          observer.unobserve(logo);
-        }
-      });
-    }, { threshold: 0.6 });
-
-    observer.observe(logo);
-  </script>
-
-</body>
-</html>
+    const observer = new Intersection
