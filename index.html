@@ -6,46 +6,259 @@
   <title>garyskins</title>
   <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap" rel="stylesheet">
   <style>
-    /* (Same CSS as you provided, unchanged for brevity) */
+    :root {
+      --bg-light: #f0f0f0;
+      --text-light: #000000;
+      --bg-dark: #111111;
+      --text-dark: #ffffff;
+      --switch-bg-light: #888;
+      --switch-bg-dark: #4CAF50;
+      --switch-dot-light: #fff;
+      --switch-dot-dark: #fff;
+    }
+
+    [data-theme="light"], [data-theme="dark"] {
+      transition: background-color 0.5s ease, color 0.5s ease;
+    }
+
+    [data-theme="light"] {
+      background-color: var(--bg-light);
+      color: var(--text-light);
+    }
+
+    [data-theme="dark"] {
+      background-color: var(--bg-dark);
+      color: var(--text-dark);
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      padding-top: 80px;
+      transition: background-color 0.5s ease, color 0.5s ease;
+    }
+
+    @keyframes fadeSlideDown {
+      0% {
+        opacity: 0;
+        transform: translate(-50%, -20px);
+      }
+      100% {
+        opacity: 1;
+        transform: translate(-50%, 0);
+      }
+    }
+
+    .logo {
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 1000;
+      margin-top: 20px;
+      opacity: 0;
+      transition: filter 0.5s ease;
+    }
+
+    .logo img {
+      width: 150px;
+      transform: scale(1.55);
+      transition: filter 0.5s ease;
+    }
+
+    .logo.animate {
+      animation: fadeSlideDown 1.2s ease-out forwards;
+    }
+
+    [data-theme="dark"] .logo img {
+      filter: invert(1);
+    }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 20px;
+      padding: 20px;
+      padding-top: 100px;
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .gallery-item {
+      position: relative;
+      width: 100%;
+      padding-top: 100%;
+      overflow: hidden;
+      background-color: #f0f0f0;
+      border-radius: 50%;
+      transition: transform 0.3s ease, border-color 0.5s ease;
+      border: 2px solid #bcbcbc;
+    }
+
+    [data-theme="dark"] .gallery-item {
+      border-color: #404040;
+    }
+
+    .gallery-item:hover {
+      transform: scale(1.2);
+    }
+
+    .gallery-item img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 50%;
+    }
+
+    .toggle-btn {
+      position: fixed;
+      top: 1rem;
+      right: 1rem;
+      background: none;
+      border: none;
+      cursor: pointer;
+      width: 80px;
+      height: 40px;
+      border-radius: 30px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 5px;
+      z-index: 1000;
+      transition: background-color 0.4s ease;
+    }
+
+    .toggle-btn .switch {
+      width: 100%;
+      height: 100%;
+      background-color: var(--switch-bg-light);
+      border-radius: 30px;
+      position: relative;
+      transition: background-color 0.4s ease;
+    }
+
+    .toggle-btn .dot {
+      width: 20px;
+      height: 20px;
+      background-color: var(--switch-dot-light);
+      border-radius: 50%;
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      transition: transform 0.4s ease, left 0.4s ease;
+    }
+
+    [data-theme="light"] .toggle-btn .dot {
+      left: 5px;
+    }
+
+    [data-theme="dark"] .toggle-btn .dot {
+      left: calc(100% - 25px);
+    }
+
+    [data-theme="dark"] .toggle-btn .switch {
+      background-color: var(--switch-bg-dark);
+    }
+
+    [data-theme="dark"] .toggle-btn .dot {
+      background-color: var(--switch-dot-dark);
+    }
+
+    @media (max-width: 600px) {
+      .gallery {
+        grid-template-columns: repeat(3, 1fr);
+      }
+
+      .gallery-item {
+        padding-top: 100%;
+        border-width: 5px;
+      }
+
+      .gallery-item img {
+        object-position: center center;
+      }
+
+      .gallery {
+        max-width: 90%;
+        margin: 0 auto;
+        padding-left: 10px;
+        padding-right: 10px;
+      }
+    }
   </style>
 </head>
 <body>
 
-  <!-- Logo -->
+  <!-- Logo at top center -->
   <div class="logo" id="logo">
-    <img src="img_6130_1.png" alt="Logo"> <!-- Rename file to avoid issues -->
+    <img src="IMG_6130 (1).PNG" alt="Logo">
   </div>
 
-  <!-- Theme toggle -->
+  <!-- Theme toggle button -->
   <button class="toggle-btn" onclick="toggleTheme()" id="themeToggle">
     <div class="switch">
       <div class="dot"></div>
     </div>
   </button>
 
-  <!-- Gallery container -->
-  <div class="gallery">
-    <div class="gallery-item"><img src="reffffff_1_1.png" alt="Artwork 1" /></div>
-    <div class="gallery-item"><img src="wavemoster_1_1.png" alt="Artwork 2" /></div>
-    <div class="gallery-item"><img src="img_6725_1_1_1.png" alt="Artwork 3" /></div>
-    <div class="gallery-item"><img src="cookie_1.png" alt="Artwork 4" /></div>
-    <div class="gallery-item"><img src="potatoesimp_1.png" alt="Artwork 5" /></div>
-    <div class="gallery-item"><img src="pooppy_1.png" alt="Artwork 6" /></div>
-    <div class="gallery-item"><img src="broccc_1.png" alt="Artwork 7" /></div>
-    <div class="gallery-item"><img src="chikincart_2_1.png" alt="Artwork 8" /></div>
-    <div class="gallery-item"><img src="swourdd_2.png" alt="Artwork 9" /></div>
-    <div class="gallery-item"><img src="eyye_1.png" alt="Artwork 10" /></div>
-    <div class="gallery-item"><img src="glazedd_1.png" alt="Artwork 11" /></div>
-    <div class="gallery-item"><img src="hertdonut_1.png" alt="Artwork 12" /></div>
-    <div class="gallery-item"><img src="uncc_1_1.png" alt="Artwork 13" /></div>
-    <div class="gallery-item"><img src="saw3000_1.png" alt="Artwork 14" /></div>
-    <div class="gallery-item"><img src="sparkleee_1.png" alt="Artwork 15" /></div>
-    <div class="gallery-item"><img src="cattt_1.png" alt="Artwork 16" /></div>
-    <div class="gallery-item"><img src="sthnake_1.png" alt="Artwork 17" /></div>
-  </div>
+  <!-- Gallery section -->
+   <div class="gallery-item">
+      <img src="reffffff (1) (1).png" alt="Artwork 1" />
+    <div class="gallery-item">
+      <img src="wavemoster (1) (1).png" alt="Artwork 1" />
+    </div>
+    <div class="gallery-item">
+      <img src="IMG_6725 (1) (1) (1).png" alt="Artwork 2" />
+    </div>
+    <div class="gallery-item">
+      <img src="cookie (1).png" alt="Artwork 3" />
+    </div>
+    <div class="gallery-item">
+      <img src="potatoesimp (1).png" alt="Artwork 4" />
+    </div>
+    <div class="gallery-item">
+      <img src="pooppy (1).png" alt="Artwork 5" />
+    </div>
+    <div class="gallery-item">
+      <img src="broccc (1).png" alt="Artwork 6" />
+    </div>
+    <div class="gallery-item">
+      <img src="chikincart (2) (1).png" alt="Artwork 7" />
+    </div>
+    <div class="gallery-item">
+      <img src="swourdd (2).png" alt="Artwork 8" />
+    </div>
+    <div class="gallery-item">
+      <img src="eyye (1).png" alt="Artwork 9" />
+    </div>
+    <div class="gallery-item">
+      <img src="glazedd (1).png" alt="Artwork 10" />
+    </div>
+    <div class="gallery-item">
+      <img src="hertdonut (1).png" alt="Artwork 11" />
+    </div>
+    <div class="gallery-item">
+      <img src="uncc (1) (1).png" alt="Artwork 12" />
+    </div>
+     <div class="gallery-item">
+      <img src="saw3000 (1).png" alt="Artwork 12" />
+     </div>
+     <div class="gallery-item">
+      <img src="sparkleee (1).png" alt="Artwork 12" />
+    </div>
+     <div class="gallery-item">
+      <img src="cattt (1).png" alt="Artwork 12" />
+    </div>
+     <div class="gallery-item">
+      <img src="sthnake (1).png" alt="Artwork 12" />
+    </div>
 
-  <!-- Audio for theme toggle -->
-  <audio id="toggleSound" src="toggle_sound.mp3" preload="auto"></audio>
+  <!-- Add the audio element for the sound effect -->
+  <audio id="toggleSound" src="ScreenRecording_04-06-2025 13-00-43_1.mp3" preload="auto"></audio>
 
   <script>
     const themeToggle = document.getElementById("themeToggle");
