@@ -38,6 +38,17 @@
       transition: background-color 0.5s ease, color 0.5s ease;
     }
 
+    @keyframes fadeSlideDown {
+      0% {
+        opacity: 0;
+        transform: translate(-50%, -20px);
+      }
+      100% {
+        opacity: 1;
+        transform: translate(-50%, 0);
+      }
+    }
+
     .logo {
       position: absolute;
       top: 0;
@@ -46,13 +57,17 @@
       z-index: 1000;
       margin-top: 20px;
       opacity: 0;
-      transition: opacity 1s ease-in-out;
+      transition: filter 0.5s ease;
     }
 
     .logo img {
       width: 150px;
       transform: scale(1.55);
       transition: filter 0.5s ease;
+    }
+
+    .logo.animate {
+      animation: fadeSlideDown 1.2s ease-out forwards;
     }
 
     [data-theme="dark"] .logo img {
@@ -86,7 +101,7 @@
     }
 
     .gallery-item:hover {
-      transform: scale(1.05);
+      transform: scale(1.2);
     }
 
     .gallery-item img {
@@ -95,7 +110,7 @@
       left: 0;
       width: 100%;
       height: 100%;
-      object-fit: contain; /* use contain to prevent zoomed/cropped look */
+      object-fit: cover;
       border-radius: 50%;
     }
 
@@ -156,58 +171,97 @@
     @media (max-width: 600px) {
       .gallery {
         grid-template-columns: repeat(3, 1fr);
-        max-width: 90%;
-        margin: 0 auto;
-        padding-left: 10px;
-        padding-right: 10px;
       }
 
       .gallery-item {
         padding-top: 100%;
         border-width: 5px;
       }
+
+      .gallery-item img {
+        object-position: center center;
+      }
+
+      .gallery {
+        max-width: 90%;
+        margin: 0 auto;
+        padding-left: 10px;
+        padding-right: 10px;
+      }
     }
   </style>
 </head>
 <body>
 
-  <!-- Logo -->
+  <!-- Logo at top center -->
   <div class="logo" id="logo">
     <img src="IMG_6130 (1).PNG" alt="Logo">
   </div>
 
-  <!-- Theme Toggle -->
+  <!-- Theme toggle button -->
   <button class="toggle-btn" onclick="toggleTheme()" id="themeToggle">
     <div class="switch">
       <div class="dot"></div>
     </div>
   </button>
 
-  <!-- Gallery -->
-  <div class="gallery">
-    <div class="gallery-item"><img src="reffffff (1) (1).png" alt="Artwork 1" /></div>
-    <div class="gallery-item"><img src="wavemoster (1) (1).png" alt="Artwork 2" /></div>
-    <div class="gallery-item"><img src="IMG_6725 (1) (1) (1).png" alt="Artwork 3" /></div>
-    <div class="gallery-item"><img src="cookie (1).png" alt="Artwork 4" /></div>
-    <div class="gallery-item"><img src="potatoesimp (1).png" alt="Artwork 5" /></div>
-    <div class="gallery-item"><img src="pooppy (1).png" alt="Artwork 6" /></div>
-    <div class="gallery-item"><img src="broccc (1).png" alt="Artwork 7" /></div>
-    <div class="gallery-item"><img src="chikincart (2) (1).png" alt="Artwork 8" /></div>
-    <div class="gallery-item"><img src="swourdd (2).png" alt="Artwork 9" /></div>
-    <div class="gallery-item"><img src="eyye (1).png" alt="Artwork 10" /></div>
-    <div class="gallery-item"><img src="glazedd (1).png" alt="Artwork 11" /></div>
-    <div class="gallery-item"><img src="hertdonut (1).png" alt="Artwork 12" /></div>
-    <div class="gallery-item"><img src="uncc (1) (1).png" alt="Artwork 13" /></div>
-    <div class="gallery-item"><img src="saw3000 (1).png" alt="Artwork 14" /></div>
-    <div class="gallery-item"><img src="sparkleee (1).png" alt="Artwork 15" /></div>
-    <div class="gallery-item"><img src="cattt (1).png" alt="Artwork 16" /></div>
-    <div class="gallery-item"><img src="sthnake (1).png" alt="Artwork 17" /></div>
+  <!-- Gallery section -->
   </div>
+   <div class="gallery-item">
+      <img src="reffffff (1) (1).png" alt="Artwork 99" />
+     </div>
+    <div class="gallery-item">
+      <img src="wavemoster (1) (1).png" alt="Artwork 1" />
+    </div>
+    <div class="gallery-item">
+      <img src="IMG_6725 (1) (1) (1).png" alt="Artwork 2" />
+    </div>
+    <div class="gallery-item">
+      <img src="cookie (1).png" alt="Artwork 3" />
+    </div>
+    <div class="gallery-item">
+      <img src="potatoesimp (1).png" alt="Artwork 4" />
+    </div>
+    <div class="gallery-item">
+      <img src="pooppy (1).png" alt="Artwork 5" />
+    </div>
+    <div class="gallery-item">
+      <img src="broccc (1).png" alt="Artwork 6" />
+    </div>
+    <div class="gallery-item">
+      <img src="chikincart (2) (1).png" alt="Artwork 7" />
+    </div>
+    <div class="gallery-item">
+      <img src="swourdd (2).png" alt="Artwork 8" />
+    </div>
+    <div class="gallery-item">
+      <img src="eyye (1).png" alt="Artwork 9" />
+    </div>
+    <div class="gallery-item">
+      <img src="glazedd (1).png" alt="Artwork 10" />
+    </div>
+    <div class="gallery-item">
+      <img src="hertdonut (1).png" alt="Artwork 11" />
+    </div>
+    <div class="gallery-item">
+      <img src="uncc (1) (1).png" alt="Artwork 12" />
+    </div>
+     <div class="gallery-item">
+      <img src="saw3000 (1).png" alt="Artwork 12" />
+     </div>
+     <div class="gallery-item">
+      <img src="sparkleee (1).png" alt="Artwork 12" />
+    </div>
+     <div class="gallery-item">
+      <img src="cattt (1).png" alt="Artwork 12" />
+    </div>
+     <div class="gallery-item">
+      <img src="sthnake (1).png" alt="Artwork 12" />
+    </div>
 
-  <!-- Audio -->
+  <!-- Add the audio element for the sound effect -->
   <audio id="toggleSound" src="ScreenRecording_04-06-2025 13-00-43_1.mp3" preload="auto"></audio>
 
-  <!-- Scripts -->
   <script>
     const themeToggle = document.getElementById("themeToggle");
     const toggleSound = document.getElementById("toggleSound");
@@ -215,16 +269,31 @@
     window.addEventListener('DOMContentLoaded', () => {
       const savedTheme = localStorage.getItem('theme') || 'light';
       document.documentElement.setAttribute('data-theme', savedTheme);
-
-      // Show the logo with fade-in effect after page load
-      const logo = document.getElementById('logo');
-      logo.style.opacity = '1';  // Ensure logo is visible
     });
 
     function toggleTheme() {
       toggleSound.currentTime = 0;
       toggleSound.play();
+
       const html = document.documentElement;
       const currentTheme = html.getAttribute("data-theme");
       const newTheme = currentTheme === "light" ? "dark" : "light";
-      html.setAttribute("data-theme", new
+      html.setAttribute("data-theme", newTheme);
+      localStorage.setItem('theme', newTheme);
+    }
+
+    const logo = document.getElementById('logo');
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          logo.classList.add('animate');
+          observer.unobserve(logo);
+        }
+      });
+    }, { threshold: 0.6 });
+
+    observer.observe(logo);
+  </script>
+
+</body>
+</html>
